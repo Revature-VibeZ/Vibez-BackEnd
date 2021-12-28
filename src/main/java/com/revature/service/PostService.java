@@ -47,6 +47,4 @@ public class PostService {
 	public List<Post> getAllPosts() {
 		return pd.findAll();
 	}
-	
-
 }

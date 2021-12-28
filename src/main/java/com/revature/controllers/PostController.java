@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import com.revature.models.Comment;
 import com.revature.models.Post;
+import com.revature.models.Comment;
 import com.revature.service.PostService;
 
 @RestController
@@ -33,10 +33,9 @@ public class PostController {
 		ps.createPost(post);		
 		return null;
 	}
-
+  
 	@GetMapping
 	public List<Post> get() {
 		return ps.getAllPosts();
 	}
-	
 }
