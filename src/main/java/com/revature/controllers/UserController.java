@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.revature.models.User;
+import com.revature.services.UserService;
 
 
 @RestController
@@ -25,13 +26,27 @@ import com.revature.models.User;
 @CrossOrigin("*")
 
 public class UserController {
+	
+	private UserService us;
+	
+	@Autowired
+	public UserController(UserService us) {
+		this.us = us;
+	}
 
 
 
 
 	@PostMapping
-	public ResponseEntity<String> createUser(@RequestBody User user) {			
+	public ResponseEntity<String> createUser(@RequestBody User user) {	
+		System.out.println(user);
+		us.createUser(user);
 		return new ResponseEntity<>(HttpStatus.CREATED);
+	}
+	
+	@GetMapping
+	public List<User> getAllUsers() {
+		return us.getAllUsers();
 	}
 
 
