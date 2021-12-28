@@ -11,7 +11,6 @@ import com.revature.models.User;
 
 @Repository
 public interface PostDao extends JpaRepository<Post, Integer> {
-
 	Post save(Post post);
-
+	List<Post> findAll();
 }

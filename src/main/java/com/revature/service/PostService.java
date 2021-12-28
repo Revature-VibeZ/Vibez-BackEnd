@@ -43,6 +43,8 @@ public class PostService {
 		pd.save(post);
 		return true;
 	}
-	
 
+	public List<Post> getAllPosts() {
+		return pd.findAll();
+	}
 }
