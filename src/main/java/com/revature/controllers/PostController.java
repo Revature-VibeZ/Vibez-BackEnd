@@ -14,10 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 import com.revature.models.Post;
-<<<<<<< HEAD
-=======
-import com.revature.models.Comment;
->>>>>>> 61dc58d0bfbc805a2d9bac268c53ba5b9c57487c
 import com.revature.service.PostService;
 
 @RestController
@@ -36,17 +32,9 @@ public class PostController {
 		ps.createPost(post);		
 		return null;
 	}
-<<<<<<< HEAD
-
-=======
-  
->>>>>>> 61dc58d0bfbc805a2d9bac268c53ba5b9c57487c
+	
 	@GetMapping
 	public List<Post> get() {
 		return ps.getAllPosts();
 	}
-<<<<<<< HEAD
-
-=======
->>>>>>> 61dc58d0bfbc805a2d9bac268c53ba5b9c57487c
 }
