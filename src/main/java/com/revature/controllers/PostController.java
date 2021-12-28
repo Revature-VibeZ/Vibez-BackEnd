@@ -38,5 +38,5 @@ public class PostController {
 	public List<Post> get() {
 		return ps.getAllPosts();
 	}
-	
+
 }
