@@ -5,30 +5,30 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.revature.repositories.UserRepository;
+import com.revature.DAOs.UserDao;
 import com.revature.exceptions.UserNotFoundException;
 import com.revature.models.User;
 
 @Service
 public class UserService {
 	
-	private UserRepository ur;
+	private UserDao ud;
 
 	@Autowired
-	public UserService(UserRepository ur) {
-		this.ur = ur;
+	public UserService(UserDao ud) {
+		this.ud = ud;
 	}
 
 	public List<User> getAllUsers() {
-		return ur.findAll();
+		return ud.findAll();
 	}
 
 	public List<User> getUserByUsername(String username) {
-		return ur.findUserByUsername(username);
+		return ud.findUserByUsername(username);
 	}
 	
 	public User getUserById(int id) {
-		return ur.findById(id).orElseThrow(UserNotFoundException::new);
+		return ud.findById(id).orElseThrow(UserNotFoundException::new);
 	}
 	
 
