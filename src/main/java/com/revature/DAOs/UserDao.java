@@ -1,4 +1,4 @@
-package com.revature.repositories;
+package com.revature.DAOs;
 
 import java.util.List;
 
@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 import com.revature.models.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserDao extends JpaRepository<User, Integer> {
+
 	List<User> findUserByUsername(String name);
+
 }

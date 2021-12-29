@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 import com.revature.models.Post;
-import com.revature.service.PostService;
+import com.revature.services.PostService;
 
 @RestController
 @RequestMapping("/posts")

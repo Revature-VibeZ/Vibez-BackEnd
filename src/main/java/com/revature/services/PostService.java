@@ -1,18 +1,11 @@
-package com.revature.service;
+package com.revature.services;
 
 import java.util.List;
-// import java.util.Set;
-
-// import javax.persistence.Column;
-
-// import org.hibernate.validator.constraints.Length;
 import org.springframework.stereotype.Service;
 
-import com.revature.DAO.PostDao;
-import com.revature.DAO.UserDao;
-// import com.revature.models.Comment;
+import com.revature.DAOs.PostDao;
+import com.revature.DAOs.UserDao;
 import com.revature.models.Post;
-// import com.revature.models.Reply;
 import com.revature.models.User;
 
 @Service
