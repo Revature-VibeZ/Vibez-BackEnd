@@ -35,11 +35,15 @@ public class AuthController {
 
 	@RequestMapping(value = "/auth", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
-
+		
+		System.out.println("Beginning Create Auth Token");
+		
 		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 		
-		//user details needs to be replaced with our own get username / pass from DB
 		final UserDetails userDetails = as.loadUserByUsername(authenticationRequest.getUsername());
+		
+		System.out.println("Auth Conrtoller - User Details Line:");
+		System.out.println(userDetails);
 
 		final String token = jwtTokenUtil.generateToken(userDetails);
 
@@ -48,8 +52,10 @@ public class AuthController {
 
 	private void authenticate(String username, String password) throws Exception {
 		try {
+			System.out.println("We have entered the try block of authenticate");
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 		} catch (DisabledException e) {
+			System.out.println("We failed to authenticate - disabled");
 			throw new Exception("USER_DISABLED", e);
 		} catch (BadCredentialsException e) {
 			throw new Exception("INVALID_CREDENTIALS", e);
