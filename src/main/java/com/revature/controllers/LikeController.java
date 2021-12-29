@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 import com.revature.models.Like;
-import com.revature.service.LikeService;
+import com.revature.services.LikeService;
 
 @RestController
 @RequestMapping("/likes")
