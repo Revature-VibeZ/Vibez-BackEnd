@@ -37,3 +37,5 @@ public class User {
 	private String bio;
 	private String profilePicture;
 }
+
+//comment as requested by kevin
