@@ -1,18 +1,18 @@
 package com.revature.service;
 
 import java.util.List;
-import java.util.Set;
+// import java.util.Set;
 
-import javax.persistence.Column;
+// import javax.persistence.Column;
 
-import org.hibernate.validator.constraints.Length;
+// import org.hibernate.validator.constraints.Length;
 import org.springframework.stereotype.Service;
 
 import com.revature.DAO.PostDao;
 import com.revature.DAO.UserDao;
-import com.revature.models.Comment;
+// import com.revature.models.Comment;
 import com.revature.models.Post;
-import com.revature.models.Reply;
+// import com.revature.models.Reply;
 import com.revature.models.User;
 
 @Service
@@ -28,7 +28,7 @@ public class PostService {
 	
 	public boolean createPost(String postContent) {
 		User user = new User();
-		user.setUserId(1);
+		// user.setUserId(1);
 		user.setFirstName("22442");
 		user.setLastName("last");
 		user.setUsername("username");
@@ -39,12 +39,12 @@ public class PostService {
 		Post post = new Post();	
 		post.setTitle("title");		
 		post.setContent(postContent);
-		post.setUser(user);
+		// post.setUser(user);
 		pd.save(post);
 		return true;
 	}
 
-	public List<Post> getAllPosts() {
-		return pd.findAll();
+	public List<Post> getTopLevelPosts() {
+		return pd.findByParentIdIsNull();
 	}
 }
