@@ -6,13 +6,19 @@
 
 Technologies Used 
 --
-- Java - version 8
-- Anguler - version 10
-- Spring Framework - version 2.5.8
+- Java 8
+- Anguler 10
+- Spring Framework 2.5.8
 - Spring Boot
+- Project Lombock 
+- Mockito/JUnit
+- Apache Maven
 - AWS EC2 
 - AWS S3
 - AWS RDS
+- Jenkins
+- Docker
+- Bootstrap
 
 Features
 --
@@ -29,11 +35,41 @@ Future Features
 
 Getting Started
 --
-# Clone Repository
-- 
-Usage
---
+**Clone Repository**
+
+`git clone https://github.com/Revature-VibeZ/Vibez-BackEnd.git`
+
+**Project Setup**
+1. Download Java 8
+2. Download and install Project Lombock.
+3. Open project in Java IDE (this project was created using the Eclipse IDE).
+4. Select “Run As → Spring Boot App" 
+
 Contributors
 --
+### Alpha
+- Sam 
+- Hannah 
+- Kendrick 
+- Jason 
+
+### Beta
+- Dean 
+- Albert 
+- Bezza 
+- Patience 
+
+### Charlie
+- David 
+- Jeremy
+- Tricia
+- Gerardo
+
+### Delta
+Davey
+Alex
+Brayden
+
 Licence?
 --
+
