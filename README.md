@@ -48,7 +48,7 @@ Getting Started
 Contributors
 --
 ### Alpha
-- Sam KC
+- Sampurna KC
 - Hannah Wallaker
 - Kendrick Riley
 - Jason Melick
