@@ -20,11 +20,14 @@ public class LikeService {
 		this.ld = ld;
 	}
 
-	public boolean createPost(String postContent) {
-		return true;
+	public void createLike(int userId, int postId) {
+		Like like = new Like();
+		like.setUserId(userId);
+		like.setPostId(postId);
+		ld.save(like);
 	}
 
-	public List<Like> getAllPosts() {
+	public List<Like> getAllLikes() {
 		return ld.findAll();
 	}
 

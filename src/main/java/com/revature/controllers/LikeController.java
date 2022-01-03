@@ -1,6 +1,7 @@
 package com.revature.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,9 +27,9 @@ public class LikeController {
 	} 
 		
 	@PostMapping
-	public ResponseEntity<Boolean> create(@RequestParam(name="post") String post){
-		ls.createPost(post);
-		return null;
+	public ResponseEntity<String> create(@RequestParam(name="postId") int postId, @RequestParam(name="userId") int userId){
+		ls.createLike(postId, userId);
+		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	
 	@GetMapping
