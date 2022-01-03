@@ -20,6 +20,7 @@ public class AuthService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) {
     	System.out.println("We have reached load User by Username");
         User user = userRepository.findByUsername(username);
+       
         System.out.println("Found user by username: " + user);
         if (user == null) {
             throw new UsernameNotFoundException(username);
@@ -28,5 +29,6 @@ public class AuthService implements UserDetailsService {
         System.out.println(ap);
         return ap;
     }
+  
 
 }
