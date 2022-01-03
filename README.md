@@ -66,9 +66,9 @@ Contributors
 - Gerardo
 
 ### Delta
-Davey
-Alex
-Brayden
+- Davey
+- Alex
+- Brayden
 
 Licence?
 --
