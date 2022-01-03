@@ -27,8 +27,8 @@ public class LikeController {
 	} 
 		
 	@PostMapping
-	public ResponseEntity<String> create(@RequestParam(name="postId") int postId, @RequestParam(name="userId") int userId){
-		ls.createLike(postId, userId);
+	public ResponseEntity<String> create(@RequestParam(name="postId") int postId, @RequestParam(name="username") String username){
+		ls.createLike(username, postId);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	

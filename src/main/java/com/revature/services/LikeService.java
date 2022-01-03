@@ -20,9 +20,9 @@ public class LikeService {
 		this.ld = ld;
 	}
 
-	public void createLike(int userId, int postId) {
+	public void createLike(String username, int postId) {
 		Like like = new Like();
-		like.setUserId(userId);
+		like.setUsername(username);
 		like.setPostId(postId);
 		ld.save(like);
 	}
