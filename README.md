@@ -18,6 +18,8 @@ Features
 --
 - Create and view posts
 - Interact with other users by commenting on a post as well as replying to any comments
+- more
+- more
 
 Future Features
 --
@@ -27,6 +29,8 @@ Future Features
 
 Getting Started
 --
+# Clone Repository
+- 
 Usage
 --
 Contributors
