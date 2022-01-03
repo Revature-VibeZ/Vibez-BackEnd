@@ -24,14 +24,14 @@ Features
 --
 - Create and view posts
 - Interact with other users by commenting on a post as well as replying to any comments
-- more
-- more
+- Placeholder 1
+- Placeholder 2
 
 Future Features
 --
-- 1
-- 2
-- 3
+- Placeholder 1 
+- Placeholder 2
+- Placeholder 3
 
 Getting Started
 --
@@ -48,28 +48,24 @@ Getting Started
 Contributors
 --
 ### Alpha
-- Sam 
-- Hannah 
-- Kendrick 
-- Jason 
+- Sam KC
+- Hannah Wallaker
+- Kendrick Riley
+- Jason Melick
 
 ### Beta
-- Dean 
-- Albert 
-- Bezza 
-- Patience 
+- Dean Long
+- Albert Lee
+- Bezza Ayalew
+- Patience Korrie
 
 ### Charlie
-- David 
-- Jeremy
-- Tricia
-- Gerardo
+- David Wysocki
+- Jeremy Steinhafel
+- Tricia Goodwin
+- Gerardo Barnett
 
 ### Delta
-- Davey
-- Alex
-- Brayden
-
-Licence?
---
-
+- Davey Agrinsoni
+- Alex Darvin
+- Brayden Whitlock
