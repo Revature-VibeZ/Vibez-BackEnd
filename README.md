@@ -62,7 +62,7 @@ Contributors
 ### Charlie
 - David Wysocki
 - Jeremy Steinhafel
-- Tricia Goodwin
+- Patricia Goodwin
 - Gerardo Barnett
 
 ### Delta
