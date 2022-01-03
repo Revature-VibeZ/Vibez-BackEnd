@@ -1,5 +1,6 @@
 package com.revature.models;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -26,8 +27,9 @@ public class Post {
 	private String title;
 	private String content;
 	private String image;
-	@Column(name="timestamp", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-	private String creationDate;
+	 @Column(name="timestamp", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+	// @Temporal(TemporalType.TIMESTAMP)
+	private Date creationDate;
 
 	//this represents who wrote the post, references user.id on users table
 	private int authorId;
