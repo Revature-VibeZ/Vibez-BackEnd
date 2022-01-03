@@ -53,7 +53,7 @@ Contributors
 - Kendrick Riley
 - Jason Melick
 
-### Beta
+### Bravo
 - Dean Long
 - Albert Lee
 - Bezza Ayalew
