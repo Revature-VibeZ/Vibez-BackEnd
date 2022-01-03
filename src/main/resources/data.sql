@@ -77,14 +77,14 @@
 -- create 2 likes. user 1 and user 3 like the top level post.
     -- yes this person is liking their own post, deal with it 😎
     INSERT INTO public.likes
-    (id, post_id, user_id)
+    (id, post_id, username)
     VALUES
-    (1, 1, 1);
+    (1, 1, 'testuser1');
 
     INSERT INTO public.likes
-    (id, post_id, user_id)
+    (id, post_id, username)
     VALUES
-    (2, 1, 3);
+    (2, 1, 'testuser2');
 
 -- create 3 friendships
     INSERT INTO public.friendships
