@@ -1,8 +1,10 @@
 package com.revature.services;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.revature.DAOs.PostDao;
 import com.revature.DAOs.UserDao;
@@ -28,8 +30,33 @@ public class PostService {
 		p.setCreationDate(new Date());		
 		return pd.save(p);
 	}
+	
+	public Post createPostWithFile(Post p, String username, MultipartFile file) {
+		List<User> users = ud.findUserByUsername(username);	
+		System.out.println(users.toString());
+		User user = users.get(0);
+		int userId = user.getId();
+		p.setAuthorId(userId);
+		p.setCreationDate(new Date());	
+		saveImage(p, file);
+		return pd.save(p);
+	
+	}
 
 	public List<Post> getTopLevelPosts() {
 		return pd.findByParentIdIsNull();
+	}
+	
+	public void saveImage(Post p, MultipartFile file) {
+		S3Service s3 = new S3Service();
+		try {
+			String filename = (s3.upload(file));
+			p.setImage(s3.upload(file));
+			// to get the actual link
+//			System.out.println(s3.getSignedUrl(filename));			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
