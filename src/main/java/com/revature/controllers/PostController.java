@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 // import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 
 import java.util.List;
@@ -32,14 +34,23 @@ public class PostController {
 		this.ps = ps; 
 	} 
 		
-	// @PostMapping
-	// public ResponseEntity<Boolean> post(@RequestParam(name="post") String post){
-	// 	ps.createPost(post);
-	// 	return null;
-	// }
+
 	@PostMapping
-	public ResponseEntity<Post> create(@Valid @RequestBody Post p, @RequestParam(name = "username") String username){
+	public ResponseEntity<Post> create(@Valid @RequestBody Post p, @RequestParam(name = "username") String username,
+			@RequestPart(value = "file", required = false) MultipartFile file){
 		return new ResponseEntity<>(ps.createPost(p, username), HttpStatus.CREATED);
+	}
+	
+	@RequestMapping("/new")
+	@PostMapping
+	public ResponseEntity post( @RequestPart(value = "file", required = false) MultipartFile file,
+			@RequestParam(name="content") String post,
+			@RequestParam(name="username") String username
+			){
+		Post p = new Post();
+		p.setContent(post);
+		ps.createPostWithFile(p, username, file);
+		return null;
 	}
 
 	
