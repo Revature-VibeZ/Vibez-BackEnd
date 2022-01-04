@@ -47,6 +47,7 @@ public class PostService {
 	public List<Post> getTopLevelPosts() {		
 		S3Service s3 = new S3Service();
 		for (Post post : pd.findByParentIdIsNull()) {
+			//uuid is a unique identifier for the file
 			if (post.getUuid()!= null) {
 				post.setImage(s3.getSignedUrl(post.getUuid()));
 				pd.save(post);
@@ -58,12 +59,11 @@ public class PostService {
 	public void saveImage(Post p, MultipartFile file) {
 		S3Service s3 = new S3Service();
 		try {
-			String filename = (s3.upload(file));
 			p.setUuid(s3.upload(file));
+			// String filename = (s3.upload(file));
 			// to get the actual link
-//			System.out.println(s3.getSignedUrl(filename));			
+			//System.out.println(s3.getSignedUrl(filename));			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
