@@ -31,7 +31,7 @@ public class PostService {
 		return pd.save(p);
 	}
 	
-	public Post createPostWithFile(Post p, String username, MultipartFile file) {
+	public Post createPostWithFile(Post p, String username, MultipartFile file) throws IOException {
 		List<User> users = ud.findUserByUsername(username);	
 		System.out.println(users.toString());
 		User user = users.get(0);
@@ -44,7 +44,7 @@ public class PostService {
 	
 	}
 
-	public List<Post> getTopLevelPosts() {		
+	public List<Post> getTopLevelPosts() throws IOException {		
 		S3Service s3 = new S3Service();
 		for (Post post : pd.findByParentIdIsNull()) {
 			//uuid is a unique identifier for the file
@@ -56,7 +56,7 @@ public class PostService {
 		return pd.findByParentIdIsNull();
 	}
 	
-	public void saveImage(Post p, MultipartFile file) {
+	public void saveImage(Post p, MultipartFile file) throws IOException {
 		S3Service s3 = new S3Service();
 		try {
 			p.setUuid(s3.upload(file));
