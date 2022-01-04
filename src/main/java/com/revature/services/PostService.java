@@ -36,11 +36,25 @@ public class PostService {
 		return pd.findByParentIdIsNull();
 	}
 	
-	public void saveImage(MultipartFile file) {
+	public Post createPostWithFile(Post p, String username, MultipartFile file) {
+		List<User> users = ud.findUserByUsername(username);	
+		System.out.println(users.toString());
+		User user = users.get(0);
+		int userId = user.getId();
+		p.setAuthorId(userId);
+		p.setCreationDate(new Date());	
+		saveImage(p, file);
+		return pd.save(p);
+	
+	}
+	
+	public void saveImage(Post p, MultipartFile file) {
 		S3Service s3 = new S3Service();
 		try {
-			System.out.print(s3.upload(file));
-			
+			String filename = (s3.upload(file));
+			p.setImage(s3.upload(file));
+			// to get the actual link
+//			System.out.println(s3.getSignedUrl(filename));			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

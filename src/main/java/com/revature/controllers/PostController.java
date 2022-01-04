@@ -34,22 +34,23 @@ public class PostController {
 		this.ps = ps; 
 	} 
 		
-//	@PostMapping
-//	public ResponseEntity post( @RequestPart(value = "file", required = false) MultipartFile file,
-//			@RequestParam(name="post") String post,
-//			@RequestParam(name="post") String username
-//			){
-//		ps.createPost(post, file);		
-//		
-//		
-//		return null;
-//	}
 
 	@PostMapping
 	public ResponseEntity<Post> create(@Valid @RequestBody Post p, @RequestParam(name = "username") String username,
 			@RequestPart(value = "file", required = false) MultipartFile file){
 		return new ResponseEntity<>(ps.createPost(p, username), HttpStatus.CREATED);
-
+	}
+	
+	@RequestMapping("/new")
+	@PostMapping
+	public ResponseEntity post( @RequestPart(value = "file", required = false) MultipartFile file,
+			@RequestParam(name="content") String post,
+			@RequestParam(name="username") String username
+			){
+		Post p = new Post();
+		p.setContent(post);
+		ps.createPostWithFile(p, username, file);
+		return null;
 	}
 
 	
