@@ -27,6 +27,7 @@ public class Post {
 	private String title;
 	private String content;
 	private String image;
+	private String uuid;
 	 @Column(name="timestamp", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	// @Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;
