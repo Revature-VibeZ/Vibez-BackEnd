@@ -1,4 +1,4 @@
-package com.revature.service;
+package com.revature.services;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,7 +13,7 @@ import com.amazonaws.HttpMethod;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.revature.DAO.S3Dao;
+import com.revature.DAOs.S3Dao;
 import com.revature.utils.AmazonConfiguration;
 
 @Service

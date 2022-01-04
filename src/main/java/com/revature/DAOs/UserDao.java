@@ -1,6 +1,5 @@
-package com.revature.DAO;
+package com.revature.DAOs;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,8 +10,6 @@ import com.revature.models.User;
 @Repository
 public interface UserDao extends JpaRepository<User, Integer> {
 
-	User findByUsername(String username);
-	User save(User user);
-	User findById(int id);
-	ArrayList<User> findAll();
+	List<User> findUserByUsername(String name);
+
 }
