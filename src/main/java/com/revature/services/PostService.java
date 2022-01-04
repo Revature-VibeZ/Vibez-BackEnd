@@ -1,5 +1,6 @@
 package com.revature.services;
 
+import java.util.Date;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
@@ -19,22 +20,13 @@ public class PostService {
 		this.ud = ud;		
 	}	
 	
-	public boolean createPost(String postContent) {
-		User user = new User();
-		// user.setUserId(1);
-		user.setFirstName("22442");
-		user.setLastName("last");
-		user.setUsername("username");
-		user.setPassword("password");
-		user.setEmail("email");
-		ud.save(user);
-
-		Post post = new Post();	
-		post.setTitle("title");		
-		post.setContent(postContent);
-		// post.setUser(user);
-		pd.save(post);
-		return true;
+	public Post createPost(Post p, String username) {
+		List<User> users = ud.findUserByUsername(username);
+		User user = users.get(0);
+		int userId = user.getId();
+		p.setAuthorId(userId);
+		p.setCreationDate(new Date());		
+		return pd.save(p);
 	}
 
 	public List<Post> getTopLevelPosts() {

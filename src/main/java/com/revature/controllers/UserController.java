@@ -20,6 +20,7 @@ import com.revature.services.UserService;
 @CrossOrigin("*")
 
 public class UserController {
+	
 
 	private UserService us;
 
@@ -40,11 +41,14 @@ public class UserController {
 	}
 
 	@PostMapping
+
 	public ResponseEntity<String> createUser(@RequestBody User user) {
-		us.createUser(user);
-		
+		us.createUser(user);	
+
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
+	
+
 
 	@PutMapping("/{id}")
 	public ResponseEntity<String> updateUser(@PathVariable(name = "id") int id, @RequestBody User user) {
