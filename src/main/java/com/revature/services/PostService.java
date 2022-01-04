@@ -38,12 +38,20 @@ public class PostService {
 		int userId = user.getId();
 		p.setAuthorId(userId);
 		p.setCreationDate(new Date());	
-		saveImage(p, file);
+		if (file!= null) {
+		saveImage(p, file);};
 		return pd.save(p);
 	
 	}
 
-	public List<Post> getTopLevelPosts() {
+	public List<Post> getTopLevelPosts() {		
+		S3Service s3 = new S3Service();
+		for (Post post : pd.findByParentIdIsNull()) {
+			if (post.getUuid()!= null) {
+				post.setImage(s3.getSignedUrl(post.getUuid()));
+				pd.save(post);
+			}
+		}
 		return pd.findByParentIdIsNull();
 	}
 	
@@ -51,7 +59,7 @@ public class PostService {
 		S3Service s3 = new S3Service();
 		try {
 			String filename = (s3.upload(file));
-			p.setImage(s3.upload(file));
+			p.setUuid(s3.upload(file));
 			// to get the actual link
 //			System.out.println(s3.getSignedUrl(filename));			
 		} catch (IOException e) {
