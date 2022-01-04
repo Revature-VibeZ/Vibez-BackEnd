@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 import lombok.Data;
 
@@ -26,6 +27,7 @@ public class Post {
 	private int id;
 	private String title;
 	private String content;
+	@Size(max=1000)
 	private String image;
 	private String uuid;
 	 @Column(name="timestamp", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
