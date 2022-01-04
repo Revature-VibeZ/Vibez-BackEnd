@@ -41,13 +41,14 @@ public class PostController {
 	
 	@RequestMapping("/new")
 	@PostMapping
-	public void post( @RequestPart(value = "file", required = false) MultipartFile file,
+	public ResponseEntity<String> post( @RequestPart(value = "file", required = false) MultipartFile file,
 			@RequestParam(name="content") String post,
 			@RequestParam(name="username") String username
 			) throws IOException{
 		Post p = new Post();
 		p.setContent(post);
 		ps.createPostWithFile(p, username, file);
+		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	
 	@GetMapping

@@ -20,7 +20,7 @@ public class FileService {
 	}
     
 	public String generateUUID() {
-		return UUID.randomUUID().toString();
+		return UUID.randomUUID().toString() + ".png";
     }
 	
 	public InputStream getInputStream(MultipartFile file) throws IOException{
