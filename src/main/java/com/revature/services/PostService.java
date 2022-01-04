@@ -38,7 +38,8 @@ public class PostService {
 		int userId = user.getId();
 		p.setAuthorId(userId);
 		p.setCreationDate(new Date());	
-		saveImage(p, file);
+		if (file!= null) {
+		saveImage(p, file);};
 		return pd.save(p);
 	
 	}
