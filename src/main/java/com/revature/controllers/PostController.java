@@ -39,8 +39,7 @@ public class PostController {
 		return new ResponseEntity<>(ps.createPost(p, username), HttpStatus.CREATED);
 	}
 	
-	@RequestMapping("/new")
-	@PostMapping
+	@PostMapping("/new")
 	public ResponseEntity<String> post( @RequestPart(value = "file", required = false) MultipartFile file,
 			@RequestParam(name="content") String post,
 			@RequestParam(name="username") String username
