@@ -64,7 +64,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/username")
-	public User getUserById(@PathVariable(name= "username")string username) {
+	public User getUserById(@PathVariable(name= "username")String username) {
 		return null;
 	}
 
