@@ -62,5 +62,10 @@ public class UserController {
 	public User getUserById(@PathVariable(name= "id")int id) {
 		return us.getUserById(id);
 	}
+	
+	@GetMapping("/username")
+	public User getUserById(@PathVariable(name= "username")string username) {
+		return null;
+	}
 
 }
