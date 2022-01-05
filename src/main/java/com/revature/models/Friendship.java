@@ -14,7 +14,7 @@ import lombok.Data;
 public class Friendship {
     @Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int id;
+    private int friendshipId;
 	@Column(name="first_user_id", nullable=false)
 	private int firstUserId;
 	@Column(name="second_user_id", nullable=false)

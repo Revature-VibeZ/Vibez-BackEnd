@@ -1,5 +1,7 @@
 package com.revature.models;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,8 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.validator.constraints.Length;
+
 
 import lombok.Data;
 
@@ -36,6 +40,7 @@ public class User {
 	private String email;
 	private String bio;
 	private String profilePicture;
+	
+	@Transient
+	private List<User> friends;
 }
-
-//comment as requested by kevin
