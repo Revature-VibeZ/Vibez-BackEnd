@@ -50,9 +50,10 @@ public class UserController {
 	
 
 
-	@PutMapping("/{id}")
-	public ResponseEntity<String> updateUser(@PathVariable(name = "id") int id, @RequestBody User user) {
-		us.updateUser(id, user);
+	@PutMapping()
+	public ResponseEntity<String> resetPassword(@RequestParam String username,@RequestParam String password) {
+		System.out.println("Update user is at this point line 55 controller");
+		us.resetPassword(username, password);
 		return new ResponseEntity<>(HttpStatus.OK);
 
 	}
