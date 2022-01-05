@@ -43,4 +43,9 @@ public class LikeService {
 	public List<Like> getLikesByPostId(int postId) {
 		return ld.findByPostId(postId);
 	}
+
+    public int delete(int id) {
+		ld.deleteById(id);
+		return id;
+    }
 }
