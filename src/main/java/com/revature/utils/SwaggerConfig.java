@@ -32,8 +32,8 @@ public class SwaggerConfig {
 
     public static ApiInfo apiInfo() {
         return new ApiInfo(
-          "My REST API",
-          "Some custom description of API.",
+          "VibeZ API",
+          "https://github.com/Revature-VibeZ/Vibez-BackEnd",
           "1.0",
           "Terms of service",
           new Contact("Albert", "Lee", "albert.lee@revature.net"),
