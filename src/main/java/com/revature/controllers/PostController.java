@@ -1,5 +1,6 @@
 package com.revature.controllers;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -30,30 +31,25 @@ public class PostController {
 	@Autowired public PostController(PostService ps) { 
 		this.ps = ps; 
 	} 
-		
-	// @PostMapping
-	// public ResponseEntity<Boolean> post(@RequestParam(name="post") String post){
-	// 	ps.createPost(post);
-	// 	return null;
-	// }
+
 	@PostMapping
 	public ResponseEntity<Post> create(@Valid @RequestBody Post p, @RequestParam(name = "username") String username){
 		return new ResponseEntity<>(ps.createPost(p, username), HttpStatus.CREATED);
 	}
-	@RequestMapping("/new")
-	@PostMapping
-	public ResponseEntity post( @RequestPart(value = "file", required = false) MultipartFile file,
+	
+	@PostMapping("/new")
+	public ResponseEntity<String> post( @RequestPart(value = "file", required = false) MultipartFile file,
 			@RequestParam(name="content") String post,
 			@RequestParam(name="username") String username
-			){
+			) throws IOException{
 		Post p = new Post();
 		p.setContent(post);
 		ps.createPostWithFile(p, username, file);
-		return null;
+		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	
 	@GetMapping
-	public List<Post> get() {
+	public List<Post> get() throws IOException {
 		return ps.getTopLevelPosts();
 	}
 }

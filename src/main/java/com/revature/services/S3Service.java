@@ -24,7 +24,7 @@ public class S3Service implements S3Dao {
     private FileService fs;
     
     @Autowired
-	public S3Service() {
+	public S3Service() throws IOException {
 		super();
 		this.s3 = new AmazonConfiguration().s3();
 		this.fs = new FileService();

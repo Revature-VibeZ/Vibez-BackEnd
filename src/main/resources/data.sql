@@ -42,37 +42,37 @@
     INSERT INTO public.posts
     (id, author_id, content, timestamp, image, parent_id, title)
     VALUES
-    (1, 1, 'top level post! parent id is null.', CURRENT_TIMESTAMP, 'imageurl', null, 'first title');
+    (1, 1, 'top level post! parent id is null. click on me to see comments.', CURRENT_TIMESTAMP, 'https://i.pinimg.com/originals/44/e2/42/44e2422c7ecf1e9234c7fa4cdf03f060.jpg', null, 'first title');
 
     -- second is a "comment" which is just a nested post with parent id of 1, referencing the first post we just created.
     INSERT INTO public.posts
     (id, author_id, content, timestamp, image, parent_id, title)
     VALUES
-    (2, 2, 'comment or nested post, parent id is not zero', CURRENT_TIMESTAMP, 'imageurl', 1, 'second title');
+    (2, 2, 'comment or nested post, parent id is 1', CURRENT_TIMESTAMP, 'https://i.pinimg.com/originals/44/e2/42/44e2422c7ecf1e9234c7fa4cdf03f060.jpg', 1, 'second title');
 
     -- third is a "reply" to the previous "comment" which is again, just a nested post but this time with a parent id of 2, referencing the "comment"
     INSERT INTO public.posts
     (id, author_id, content, timestamp, image, parent_id, title)
     VALUES
-    (3, 3, 'reply or 2+ levels deep post to comment 1, parent id is not zero', CURRENT_TIMESTAMP, 'imageurl', 2, 'third title');
+    (3, 3, 'reply or 2+ levels deep post to comment 1, parent id is 2', CURRENT_TIMESTAMP, 'https://i.pinimg.com/originals/44/e2/42/44e2422c7ecf1e9234c7fa4cdf03f060.jpg', 2, 'third title');
 
     -- deeper comment
     INSERT INTO public.posts
     (id, author_id, content, timestamp, image, parent_id, title)
     VALUES
-    (4, 3, '3 levels deep', CURRENT_TIMESTAMP, 'imageurl', 3, 'fourth title');
+    (4, 3, '3 levels deep', CURRENT_TIMESTAMP, 'https://i.pinimg.com/originals/44/e2/42/44e2422c7ecf1e9234c7fa4cdf03f060.jpg', 3, 'fourth title');
 
     -- even deeper comment
     INSERT INTO public.posts
     (id, author_id, content, timestamp, image, parent_id, title)
     VALUES
-    (5, 3, 'etc levels deep', CURRENT_TIMESTAMP, 'imageurl', 4, 'fifth title');
+    (5, 3, 'etc levels deep', CURRENT_TIMESTAMP, 'https://i.pinimg.com/originals/44/e2/42/44e2422c7ecf1e9234c7fa4cdf03f060.jpg', 4, 'fifth title');
     
     -- second top level post!
     INSERT INTO public.posts
     (id, author_id, content, timestamp, image, parent_id, title)
     VALUES
-    (6, 3, 'second top level post', CURRENT_TIMESTAMP, 'imageurl', null, 'second top level post');
+    (6, 3, 'what is your favorite cat food??', CURRENT_TIMESTAMP, 'https://i.pinimg.com/originals/44/e2/42/44e2422c7ecf1e9234c7fa4cdf03f060.jpg', null, 'another title');
 
 -- create 2 likes. user 1 and user 3 like the top level post.
     -- yes this person is liking their own post, deal with it 😎

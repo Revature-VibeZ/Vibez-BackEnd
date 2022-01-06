@@ -8,6 +8,7 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,17 +31,18 @@ public class AuthController {
 
 	@Autowired
 	private AuthService as;
-
-	@RequestMapping(value = "/auth", method = RequestMethod.POST)
-	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+	
+	
+	@PostMapping("/auth")
+	public ResponseEntity<JwtResponse> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 		
-		System.out.println("Beginning Create Auth Token");
+		//Beginning Create Auth Token
 		
 		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 		
 		final UserDetails userDetails = as.loadUserByUsername(authenticationRequest.getUsername());
 		
-		System.out.println("Auth Conrtoller - User Details Line:");
+		System.out.println("Auth Controller - User Details Line:");
 		System.out.println(userDetails);
 
 		final String token = jwtTokenUtil.generateToken(userDetails);
