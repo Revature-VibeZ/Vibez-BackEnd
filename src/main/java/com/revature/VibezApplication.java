@@ -1,5 +1,7 @@
 package com.revature;
 
+import com.revature.utils.SwaggerConfig;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -19,6 +21,9 @@ public class VibezApplication {
 	@Bean
     public Docket api() { 
         return new Docket(DocumentationType.SWAGGER_2)  
+          .apiInfo(SwaggerConfig.apiInfo())
+          .securityContexts(SwaggerConfig.securityContext())
+          .securitySchemes(SwaggerConfig.apiKey())
           .select()                                  
           .apis(RequestHandlerSelectors.any())              
           .paths(PathSelectors.any())                          
