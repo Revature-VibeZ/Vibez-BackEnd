@@ -20,7 +20,7 @@ public class AmazonConfiguration {
         String access = System.getenv("VIBEZ_ACCESS_KEY");
         String secret = System.getenv("VIBEZ_SECRET_KEY");
         
-        if(access.equals(null) || secret.equals(null)){
+        if(access == null || secret == null){
             Properties prop = new Properties();
             ClassLoader loader = Thread.currentThread().getContextClassLoader();
             prop.load(loader.getResourceAsStream("prop.properties"));
