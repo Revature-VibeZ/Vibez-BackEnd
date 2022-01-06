@@ -15,6 +15,8 @@ import springfox.documentation.spi.service.contexts.SecurityContext;
 
 @Data
 public class SwaggerConfig {
+    private SwaggerConfig(){}
+
     public static List<SecurityScheme> apiKey() { 
         return Arrays.asList(new ApiKey("JWT", "Authorization", "header")); 
     }
