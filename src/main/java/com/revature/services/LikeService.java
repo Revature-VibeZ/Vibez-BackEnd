@@ -19,12 +19,21 @@ public class LikeService {
 	public LikeService(LikeDao ld) {
 		this.ld = ld;
 	}
-
-	public void createLike(String username, int postId) {
+ 
+	public Like createLike(String username, int postId) {
 		Like like = new Like();
 		like.setUsername(username);
 		like.setPostId(postId);
-		ld.save(like);
+
+		List<Like> theseLikes = ld.findByPostId(postId);
+		boolean liked = false;
+
+		for(Like like1 : theseLikes) {
+			if (username.equals(like1.getUsername())) liked = true;
+		};
+
+		if (liked == false) return ld.save(like);
+		return null;
 	}
 
 	public List<Like> getAllLikes() {
@@ -34,4 +43,9 @@ public class LikeService {
 	public List<Like> getLikesByPostId(int postId) {
 		return ld.findByPostId(postId);
 	}
+
+    public int delete(int id) {
+		ld.deleteById(id);
+		return id;
+    }
 }

@@ -22,13 +22,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
-
+	
 	@Autowired
 	private UserDetailsService jwtUserDetailsService;
-
+	
 	@Autowired
 	private JwtRequestFilter jwtRequestFilter;
-
+	
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		// configure AuthenticationManager so that it knows from where to load
@@ -51,9 +51,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		// We don't need CSRF for this example
-		httpSecurity.csrf().disable()
+		httpSecurity.csrf().disable().cors().and()
 				// dont authenticate this particular request
-				.authorizeRequests().antMatchers("/**").permitAll().
+				// .authorizeRequests().antMatchers("/**").permitAll().
+				.authorizeRequests().antMatchers(
+					"/users", 
+					"/auth",
+					// "/posts",
+					"/swagger-ui/**/", 
+					"/swagger-ui/**/**", 
+					"/swagger-resources/**",
+					"/swagger-ui.html",
+					"/v2/api-docs",
+					"/webjars/**",
+					"/h2-console/**"
+				).permitAll().
 				// all other requests need to be authenticated
 				anyRequest().authenticated().and().
 				// make sure we use stateless session; session won't be used to
@@ -61,6 +73,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
+		// fixes an issue with local in memory h2 database connecting through spring security configuration
+		httpSecurity.headers().frameOptions().disable();
+		
 		// Add a filter to validate the tokens with every request
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);	
 	}
