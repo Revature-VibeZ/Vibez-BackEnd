@@ -57,7 +57,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.authorizeRequests().antMatchers(
 					"/app/**", 
 					"/chatroom/**",				
-					"/users", 
+					"/users",
+					"/users/**",
 					"/auth",
 					"/swagger-ui/**/", 
 					"/swagger-ui/**/**", 
