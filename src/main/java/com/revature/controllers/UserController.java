@@ -1,4 +1,5 @@
 package com.revature.controllers;
+import java.io.IOException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +12,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.revature.models.Post;
 import com.revature.models.User;
 import com.revature.services.UserService;
 
@@ -50,12 +55,20 @@ public class UserController {
 	
 
 
-	@PutMapping()
+	@PutMapping("/reset")
 	public ResponseEntity<String> resetPassword(@RequestParam String username,@RequestParam String password) {
 		System.out.println("Update user is at this point line 55 controller");
 		us.resetPassword(username, password);
 		return new ResponseEntity<>(HttpStatus.OK);
 
+	}
+	
+	@PutMapping
+	public ResponseEntity<String> post( @RequestPart(value = "file", required = false) MultipartFile file,
+			@RequestParam(name="username") String username
+			) throws IOException{
+		String url = us.uploadProfileImage(username, file);
+		return new ResponseEntity<>(url, HttpStatus.OK);
 	}
 	
 	@GetMapping("/{id}")
