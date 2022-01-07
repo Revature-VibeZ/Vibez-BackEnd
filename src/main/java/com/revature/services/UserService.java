@@ -8,12 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.revature.models.Post;
 import com.revature.models.User;
 import com.revature.DAOs.UserDao;
 import com.revature.exceptions.UserNotFoundException;
-import com.revature.models.User;
+
 
 @Service
 public class UserService {
