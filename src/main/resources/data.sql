@@ -2,17 +2,17 @@
     INSERT INTO public.users
     (id, bio, email, first_name, last_name, password, profile_picture, username)
     VALUES
-    (1, 'bio', 'email1', 'first', 'last', 'password', 'profileimageurl', 'username1');
+    (1, 'bio', 'email1', 'first', 'last', 'password', 'https://i.pinimg.com/originals/44/e2/42/44e2422c7ecf1e9234c7fa4cdf03f060.jpg', 'username1');
 
     INSERT INTO public.users
     (id, bio, email, first_name, last_name, password, profile_picture, username)
     VALUES
-    (2, 'bio', 'email2', 'first', 'last', 'password', 'profileimageurl', 'username2');
+    (2, 'bio', 'email2', 'first', 'last', 'password', 'https://i.pinimg.com/originals/44/e2/42/44e2422c7ecf1e9234c7fa4cdf03f060.jpg', 'username2');
 
     INSERT INTO public.users
     (id, bio, email, first_name, last_name, password, profile_picture, username)
     VALUES
-    (3, 'bio', 'email3', 'lots of comments', 'person', 'password', 'profileimageurl', 'username3');
+    (3, 'bio', 'email3', 'lots of comments', 'person', 'password', 'https://i.pinimg.com/originals/44/e2/42/44e2422c7ecf1e9234c7fa4cdf03f060.jpg', 'username3');
 
 
 	insert into USERS (bio, email, first_name, last_name, password, profile_picture, username) 

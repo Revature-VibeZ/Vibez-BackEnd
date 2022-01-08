@@ -68,7 +68,7 @@ public class UserController {
 			@RequestParam(name="username") String username
 			) throws IOException{
 		String url = us.uploadProfileImage(username, file);
-		return new ResponseEntity<>(url, HttpStatus.OK);
+		return new ResponseEntity<String>(url, HttpStatus.OK);
 	}
 	
 	@GetMapping("/{id}")

@@ -45,18 +45,13 @@ public class LikeController {
 	@DeleteMapping
 	public ResponseEntity<Integer> delete(@RequestParam(name="postId") int postId, @RequestParam(name="username") String username){
 		int id = 0;
-		System.out.println(id);
 		List<Like> likes = ls.getLikesByPostId(postId);
-		System.out.println(id);
 		for(Like like : likes) {
-			System.out.println(id);
 			if(like.getUsername().equals(username)) {
 				id = like.getId();
-				System.out.println(id);
 				ls.delete(id);
 			}
 		}
-		System.out.println(id);
 		return new ResponseEntity<>(id, HttpStatus.OK);
 	}
 }
