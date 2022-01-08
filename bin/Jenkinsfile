@@ -4,11 +4,14 @@ pipeline {
     environment {
         PORT_HOST="8081"
         PORT_CONT="8080"
-        IMAGE_TAG="vibez-demo"
-        CONTAINER_NAME="vibez-app"
+        IMAGE_TAG="vibez"
+        CONTAINER_NAME="vibez"
         DB_URL=credentials('DB_URL')
         DB_USER=credentials('DB_USER')
         DB_PASS=credentials('DB_PASS')
+        VIBEZ_ACCESS_KEY=credentials('VIBEZ_ACCESS_KEY')
+        VIBEZ_SECRET_KEY=credentials('VIBEZ_SECRET_KEY')
+       
     }
 
    stages {
@@ -49,7 +52,7 @@ pipeline {
         }
         stage('create container') {
             steps {
-                sh 'docker run -e DB_URL=${DB_URL} -e DB_USER=${DB_USER} -e DB_PASS=${DB_PASS} -d --rm -p ${PORT_HOST}:${PORT_CONT} --name ${CONTAINER_NAME} ${IMAGE_TAG} '
+                sh 'docker run -e DB_URL=${DB_URL} -e DB_USER=${DB_USER} -e DB_PASS=${DB_PASS} -e VIBEZ_ACCESS_KEY=${VIBEZ_ACCESS_KEY} -e VIBEZ_SECRET_KEY=${VIBEZ_SECRET_KEY} -d --rm -p ${PORT_HOST}:${PORT_CONT} --name ${CONTAINER_NAME} ${IMAGE_TAG} '
             }
         }
     }

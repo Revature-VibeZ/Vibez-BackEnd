@@ -9,8 +9,5 @@ import com.revature.models.Post;
 
 @Repository
 public interface PostDao extends JpaRepository<Post, Integer> {
-	// Post save(Post post); not needed as crud repository already has it, avoids error message
-	// List<Post> findByParentId(int id);
 	List<Post> findByParentIdIsNull();
-	
 }

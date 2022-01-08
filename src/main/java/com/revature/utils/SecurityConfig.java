@@ -55,9 +55,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				// dont authenticate this particular request
 				// .authorizeRequests().antMatchers("/**").permitAll().
 				.authorizeRequests().antMatchers(
-					"/users", 
+					"/app/**", 
+					"/chatroom/**",				
+					"/users",
+					"/users/**",
 					"/auth",
-					// "/posts",
 					"/swagger-ui/**/", 
 					"/swagger-ui/**/**", 
 					"/swagger-resources/**",

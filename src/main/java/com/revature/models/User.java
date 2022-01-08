@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -34,7 +35,9 @@ public class User {
 	@Length(min=3)
 	@Column(nullable=false, unique=true)
 	private String email;
+	private String uuid;
 	private String bio;
+	@Size(max=1000)
 	private String profilePicture;
 }
 
