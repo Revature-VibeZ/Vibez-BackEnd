@@ -77,6 +77,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		// fixes an issue with local in memory h2 database connecting through spring security configuration
 		httpSecurity.headers().frameOptions().disable();
+
 		// Add a filter to validate the tokens with every request
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);	
 	}

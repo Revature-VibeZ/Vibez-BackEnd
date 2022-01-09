@@ -42,7 +42,7 @@
     INSERT INTO public.posts
     (id, author_id, content, timestamp, image, parent_id, title)
     VALUES
-    (1, 1, 'top level post! parent id is null. click on me to see comments.', CURRENT_TIMESTAMP, 'https://i.pinimg.com/originals/44/e2/42/44e2422c7ecf1e9234c7fa4cdf03f060.jpg', null, 'first title');
+    (1, 1, 'top level post! parent id is null.', CURRENT_TIMESTAMP, 'https://i.pinimg.com/originals/44/e2/42/44e2422c7ecf1e9234c7fa4cdf03f060.jpg', null, 'first title');
 
     -- second is a "comment" which is just a nested post with parent id of 1, referencing the first post we just created.
     INSERT INTO public.posts
