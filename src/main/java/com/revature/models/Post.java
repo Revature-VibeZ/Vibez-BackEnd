@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import org.springframework.data.annotation.Transient;
+
 import lombok.Data;
 
 @Entity
@@ -27,21 +29,23 @@ public class Post {
 	private int id;
 	private String title;
 	private String content;
-	@Size(max=1000)
-	private String image;
 	private String uuid;
 	 @Column(name="timestamp", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	// @Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;
+	private String username;
 
-	//this represents who wrote the post, references user.id on users table
-	private int authorId;
-
+	
 	@Column(name="parent_id")
 	//parent id is null for top level posts, otherwise if parent id is not null it's a comment or nested comment
 	//using Integer instead of int because parentId is null at the top level. Java compiler will unbox/convert back down to a primitive if needed.
 	private Integer parentId;
-
+	
+	// @ManyToOne
+    // @JoinColumn(name = "author", referencedColumnName = "id")
+    // private User author;
+	//this represents who wrote the post, references user.id on users table
+	
 	@OneToMany
 	@JoinColumn(name="post_id")
 	private List<Like> likes;
@@ -50,8 +54,14 @@ public class Post {
 	@JoinColumn(name="parent_id")
 	private List<Post> comments;
 
-	//should not be here, incomplete. shows logged in user's friendships, in this case user 1 just for examples' sake.
-	@OneToMany
-	@JoinColumn(name="first_user_id")
-	private List<Friendship> friends;
+	
+	@Transient
+	@Size(max=1000)
+	private String image;
+
+
+	// //should not be here, incomplete. shows logged in user's friendships, in this case user 1 just for examples' sake.
+	// @OneToMany
+	// @JoinColumn(name="first_user_id")
+	// private List<Friendship> friends;
 }

@@ -62,7 +62,6 @@ public class UserService {
 		try {
 			saveImage(user, file);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		ud.save(user);		

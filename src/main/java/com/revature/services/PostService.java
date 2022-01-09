@@ -7,36 +7,24 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.revature.DAOs.PostDao;
-import com.revature.DAOs.UserDao;
 import com.revature.models.Post;
-import com.revature.models.User;
 
 @Service
 public class PostService {
-	
 	private PostDao pd;
-	private UserDao ud;
 	
-	public PostService(PostDao pd, UserDao ud) {
+	public PostService(PostDao pd) {
 		this.pd = pd;
-		this.ud = ud;		
 	}	
 	
 	public Post createPost(Post p, String username) {
-		List<User> users = ud.findUserByUsername(username);
-		User user = users.get(0);
-		int userId = user.getId();
-		p.setAuthorId(userId);
+		p.setUsername(username);
 		p.setCreationDate(new Date());		
 		return pd.save(p);
 	}
 	
 	public Post createPostWithFile(Post p, String username, MultipartFile file) throws IOException {
-		List<User> users = ud.findUserByUsername(username);	
-		System.out.println(users.toString());
-		User user = users.get(0);
-		int userId = user.getId();
-		p.setAuthorId(userId);
+		p.setUsername(username);
 		p.setCreationDate(new Date());	
 		if (file!= null) {
 		saveImage(p, file);};
@@ -59,10 +47,7 @@ public class PostService {
 	public void saveImage(Post p, MultipartFile file) throws IOException {
 		S3Service s3 = new S3Service();
 		try {
-			p.setUuid(s3.upload(file));
-			// String filename = (s3.upload(file));
-			// to get the actual link
-			//System.out.println(s3.getSignedUrl(filename));			
+			p.setUuid(s3.upload(file));	
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

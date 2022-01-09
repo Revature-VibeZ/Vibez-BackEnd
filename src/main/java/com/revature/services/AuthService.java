@@ -10,11 +10,9 @@ import org.springframework.stereotype.Service;
 
 import com.revature.models.User;
 import com.revature.DAOs.UserDao;
-import com.revature.services.AuthPrincipal;
 
 @Service
 public class AuthService implements UserDetailsService {
-
 	@Autowired
     private UserDao userRepository;
 
@@ -32,6 +30,4 @@ public class AuthService implements UserDetailsService {
         System.out.println(ap);
         return ap;
     }
-  
-
 }
