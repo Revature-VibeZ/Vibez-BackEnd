@@ -55,6 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				// dont authenticate this particular request
 				// .authorizeRequests().antMatchers("/**").permitAll().
 				.authorizeRequests().antMatchers(
+					"/chat",
 					"/app/**", 
 					"/chatroom/**",				
 					"/users",
