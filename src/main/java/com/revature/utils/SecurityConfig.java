@@ -55,6 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				// dont authenticate this particular request
 				// .authorizeRequests().antMatchers("/**").permitAll().
 				.authorizeRequests().antMatchers(
+					"/chat",
 					"/app/**", 
 					"/chatroom/**",				
 					"/users",
@@ -77,7 +78,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		// fixes an issue with local in memory h2 database connecting through spring security configuration
 		httpSecurity.headers().frameOptions().disable();
-		
+
 		// Add a filter to validate the tokens with every request
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);	
 	}
