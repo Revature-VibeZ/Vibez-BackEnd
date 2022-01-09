@@ -16,16 +16,13 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.revature.models.Post;
 import com.revature.models.User;
 import com.revature.services.UserService;
 
 @RestController
 @RequestMapping("/users")
 @CrossOrigin("*")
-
 public class UserController {
-	
 
 	private UserService us;
 
@@ -33,47 +30,40 @@ public class UserController {
 	public UserController(UserService us) {
 		this.us = us;
 	}
-	
+
 	@GetMapping
-	public List<User> getAllUsers(@RequestParam(name = "username", required = false)String username, @RequestParam(name = "email", required = false)String email ){
-		if(username != null) {
-			return us.getUserByUsername(username);
-		}
-		if(email != null) {
-			return us.getUserByEmail(email);
-		}
+	public List<User> getAllUsers(@RequestParam(name = "username", required = false) String username,
+			@RequestParam(name = "email", required = false) String email) {
+		if (username != null) return us.getUserByUsername(username);
+		if (email != null) return us.getUserByEmail(email);
 		return us.getAllUsers();
 	}
 
 	@PostMapping
-
 	public ResponseEntity<String> createUser(@RequestBody User user) {
-		us.createUser(user);	
-
+		us.createUser(user);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
-	
-
 
 	@PutMapping("/reset")
-	public ResponseEntity<String> resetPassword(@RequestParam String username,@RequestParam String password) {
-		System.out.println("Update user is at this point line 55 controller");
+	public ResponseEntity<String> resetPassword(@RequestParam String username, @RequestParam String password) {
 		us.resetPassword(username, password);
 		return new ResponseEntity<>(HttpStatus.OK);
+	}
 
-	}
-	
 	@PutMapping
-	public ResponseEntity<String> post( @RequestPart(value = "file", required = false) MultipartFile file,
-			@RequestParam(name="username") String username
-			) throws IOException{
-		String url = us.uploadProfileImage(username, file);
-		return new ResponseEntity<String>(url, HttpStatus.OK);
+	public ResponseEntity<User> post(@RequestPart(value = "file", required = false) MultipartFile file,
+			@RequestPart(value = "username", required = true) String username) throws IOException {
+		try {
+			User updatedUser = us.uploadProfileImage(username, file);
+			return new ResponseEntity<User>(updatedUser, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
 	}
-	
+
 	@GetMapping("/{id}")
-	public User getUserById(@PathVariable(name= "id")int id) {
+	public User getUserById(@PathVariable(name = "id") int id) {
 		return us.getUserById(id);
 	}
-
 }
