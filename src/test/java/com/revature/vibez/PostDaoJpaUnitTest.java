@@ -10,7 +10,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
-public class DaoJpaUnitTest {
+public class PostDaoJpaUnitTest {
 
     @Autowired
     private TestEntityManager entityManager;
@@ -162,31 +162,39 @@ public class DaoJpaUnitTest {
         entityManager.persist(post3);
     }
 
-    // @Test
-    // public void should_update_post_by_id() {
-    //     Post post2 = new Post();
-    //     post2.setTitle("Simple title5");
-    //     post2.setContent("Simple content5");
-    //     post2.setUsername("usernameSimple5");
-    //     post2.setUuid("uuidSimple5");
-    //     postDao.save(post2);
-    //     entityManager.persist(post2);
+    @Test
+    public void should_update_post_by_id() {
+        Post post2 = new Post();
+        post2.setTitle("Simple title5");
+        post2.setContent("Simple content5");
+        post2.setUsername("usernameSimple5");
+        post2.setUuid("uuidSimple5");
+        postDao.save(post2);
+        entityManager.persist(post2);
 
+        Post updatedPost = new Post();
+        updatedPost.setTitle("updatedSimple title5");
+        updatedPost.setContent("updatedSimple content5");
+        updatedPost.setUsername("updatedUsernameSimple5");
+        updatedPost.setUuid("updatedUuidSimple5");
+        postDao.save(updatedPost);
+        entityManager.persist(updatedPost);
 
-    //     Post post = postDao.findById(post2.getId()).get();
-    
+        Post post = postDao.findById(post2.getId()).get();
+        post.setTitle(updatedPost.getTitle());
+        post.setContent(updatedPost.getContent());
+        post.setUsername(updatedPost.getUsername());
+        post.setUuid(updatedPost.getUuid());
+        postDao.save(post);
 
-    
-    //     Post post3 = new Post();
-    //     post3.setTitle("Simple title6");
-    //     post3.setContent("Simple content6");
-    //     post3.setUsername("usernameSimple6");
-    //     post3.setUuid("uuidSimple6");
-    //     postDao.save(post3);
-    //     entityManager.persist(post3);
+        Post checkPost = postDao.findById(post2.getId()).get();
 
-    //     Post updatedPost =
-    // }
+        assertThat(checkPost.getId()).isEqualTo(post2.getId());
+        assertThat(checkPost.getTitle()).isEqualTo(updatedPost.getTitle());
+        assertThat(checkPost.getContent()).isEqualTo(updatedPost.getContent());
+        assertThat(checkPost.getUsername()).isEqualTo(updatedPost.getUsername());
+        assertThat(checkPost.getUuid()).isEqualTo(updatedPost.getUuid());
+    }
 
     @Test
     public void should_delete_post_by_id() {
@@ -218,7 +226,7 @@ public class DaoJpaUnitTest {
 
     Iterable<Post> posts = postDao.findAll();
 
-    assertThat(posts).hasSize(2).contains(post1, post2);
+    assertThat(posts).hasSize(2).contains(post1, post3);
     }
 
     @Test
