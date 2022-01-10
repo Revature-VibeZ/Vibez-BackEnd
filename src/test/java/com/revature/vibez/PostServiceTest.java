@@ -49,32 +49,15 @@ public class PostServiceTest {
 	
 	
 //	@Test
-//	public void findByUsername() {
-//		List<User> users = ud.findAll();
-//		User user = users.get(1);
-//		us.getUserByUsername("username1");
-//		assertEquals(us.getUserByUsername("username1"), user);
+//	public void canSaveImageToPost() {
+//		Post p = new Post();
+//		p.setTitle("Joe");
+//		p.setContent("Yooser");
+//		p.setUuid("testmail@testing.com");
+//		p.setUsername("username1");
+//		ps.createPostWithFile();
+//	
 //
-//	}
-//	
-//	@Test
-//	public void findUserById() {
-//		List<User> users = ud.findAll();
-//		User user = users.get(0);
-//		assertEquals(us.getUserById(1), user);
-//	}
-//	
-//	@Test
-//	public void retrieveAllUsers() {
-//		List<User> users = us.getAllUsers();	
-//		int size = users.size();
-//		assertEquals(size, 13);	
-//	}
-	
-//	@Test
-//	public void imageSaved() {
-//		
-//	
 //	}
 
 }
