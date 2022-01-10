@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,9 +24,6 @@ import lombok.Data;
 
 @Entity
 @Table(name="posts")
-@JsonIdentityInfo(
-  generator = ObjectIdGenerators.PropertyGenerator.class, 
-  property = "id")
 @Data
 public class Post {
 	//a post is the same thing as a comment, which is the same thing as a reply, all 3 are 1 entity.
@@ -45,7 +43,7 @@ public class Post {
 	@Column(name="parent_id")
 	private Integer parentId;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="user_id")
 	private User author;
 	
