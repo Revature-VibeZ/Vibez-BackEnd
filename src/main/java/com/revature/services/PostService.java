@@ -7,33 +7,39 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.revature.DAOs.PostDao;
+import com.revature.DAOs.UserDao;
 import com.revature.models.Post;
+import com.revature.models.User;
 
 @Service
 public class PostService {
 	private PostDao pd;
-	
-	public PostService(PostDao pd) {
+	private UserDao ud;
+	private S3Service s3;
+	 
+	public PostService(PostDao pd, UserDao ud, S3Service s3) {
 		this.pd = pd;
+		this.ud = ud;
+		this.s3 = s3;
 	}	
 	
 	public Post createPost(Post p, String username) {
-		p.setUsername(username);
+		saveAuthor(p, username);
 		p.setCreationDate(new Date());		
 		return pd.save(p);
 	}
 	
 	public Post createPostWithFile(Post p, String username, MultipartFile file) throws IOException {
-		p.setUsername(username);
-		p.setCreationDate(new Date());	
-		if (file!= null) {
-		saveImage(p, file);};
+		saveAuthor(p, username);
+		p.setCreationDate(new Date());
+		if (file != null) saveImage(p, file);
+		if (p.getUuid()!= null) {
+			p.setImage(s3.getSignedUrl(p.getUuid()));
+		}
 		return pd.save(p);
-	
 	}
 
 	public List<Post> getTopLevelPosts() throws IOException {		
-		S3Service s3 = new S3Service();
 		for (Post post : pd.findByParentIdIsNull()) {
 			//uuid is a unique identifier for the file
 			if (post.getUuid()!= null) {
@@ -45,11 +51,16 @@ public class PostService {
 	}
 	
 	public void saveImage(Post p, MultipartFile file) throws IOException {
-		S3Service s3 = new S3Service();
 		try {
 			p.setUuid(s3.upload(file));	
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void saveAuthor(Post p, String username) {
+		List<User> users = ud.findByUsername(username);
+		User u = users.get(0);
+		p.setAuthor(u);
 	}
 }

@@ -40,39 +40,39 @@
 -- create 6 "posts" or 1 post with 4 comments of varying depth, and a second top level post
     -- first is a top level post! note how parent_id is null in Postgresql; in Java this value will be converted into an Integer as null, meaning it is not nested at all. top level.
     INSERT INTO public.posts
-    (id, username, content, timestamp, image, parent_id, title)
+    (id, user_id, content, timestamp, image, parent_id, title)
     VALUES
-    (1, 'username1', 'top level post! parent id is null.', CURRENT_TIMESTAMP, 'https://images.freeimages.com/images/large-previews/bf4/the-road-through-the-woods-1449194.jpg', null, 'first title');
+    (1, 1, 'top level post! parent id is null.', CURRENT_TIMESTAMP, 'https://images.freeimages.com/images/large-previews/bf4/the-road-through-the-woods-1449194.jpg', null, 'first title');
 
     -- second is a "comment" which is just a nested post with parent id of 1, referencing the first post we just created.
     INSERT INTO public.posts
-    (id, username, content, timestamp, image, parent_id, title)
+    (id, user_id, content, timestamp, image, parent_id, title)
     VALUES
-    (2, 'username2', 'comment or nested post, parent id is 1', CURRENT_TIMESTAMP, 'https://images.freeimages.com/images/large-previews/7e9/ladybird-1367182.jpg', 1, 'second title');
+    (2, 2, 'comment or nested post, parent id is 1', CURRENT_TIMESTAMP, null, 1, 'second title');
 
     -- third is a "reply" to the previous "comment" which is again, just a nested post but this time with a parent id of 2, referencing the "comment"
     INSERT INTO public.posts
-    (id, username, content, timestamp, image, parent_id, title)
+    (id, user_id, content, timestamp, image, parent_id, title)
     VALUES
-    (3, 'username3', 'reply or 2+ levels deep post to comment 1, parent id is 2', CURRENT_TIMESTAMP, 'https://i.pinimg.com/originals/44/e2/42/44e2422c7ecf1e9234c7fa4cdf03f060.jpg', 2, 'third title');
+    (3, 3, 'reply or 2+ levels deep post to comment 1, parent id is 2', CURRENT_TIMESTAMP, null, 2, 'third title');
 
     -- deeper comment
     INSERT INTO public.posts
-    (id, username, content, timestamp, image, parent_id, title)
+    (id, user_id, content, timestamp, image, parent_id, title)
     VALUES
-    (4, 'username3', '3 levels deep', CURRENT_TIMESTAMP, 'https://i.pinimg.com/originals/44/e2/42/44e2422c7ecf1e9234c7fa4cdf03f060.jpg', 3, 'fourth title');
+    (4, 3, '3 levels deep', CURRENT_TIMESTAMP, null, 3, 'fourth title');
 
     -- even deeper comment
     INSERT INTO public.posts
-    (id, username, content, timestamp, image, parent_id, title)
+    (id, user_id, content, timestamp, image, parent_id, title)
     VALUES
-    (5, 'username3', 'etc levels deep', CURRENT_TIMESTAMP, 'https://i.pinimg.com/originals/44/e2/42/44e2422c7ecf1e9234c7fa4cdf03f060.jpg', 4, 'fifth title');
+    (5, 3, 'etc levels deep', CURRENT_TIMESTAMP, null, 4, 'fifth title');
     
     -- second top level post!
     INSERT INTO public.posts
-    (id, username, content, timestamp, image, parent_id, title)
+    (id, user_id, content, timestamp, image, parent_id, title)
     VALUES
-    (6, 'username3', 'what is your favorite cat food??', CURRENT_TIMESTAMP, 'https://images.freeimages.com/images/large-previews/7e9/ladybird-1367182.jpg', null, 'another title');
+    (6, 3, 'what is your favorite cat food??', CURRENT_TIMESTAMP, 'https://images.freeimages.com/images/large-previews/7e9/ladybird-1367182.jpg', null, 'another title');
 
 -- create 2 likes. user 1 and user 3 like the top level post.
     -- yes this person is liking their own post, deal with it 😎

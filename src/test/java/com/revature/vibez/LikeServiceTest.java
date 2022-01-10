@@ -1,5 +1,4 @@
 package com.revature.vibez;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -56,4 +55,5 @@ public class LikeServiceTest {
 		assertEquals(likes1.size(), 2);
 	}
 	
+
 }

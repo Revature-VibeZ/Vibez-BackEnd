@@ -13,20 +13,19 @@ import springfox.documentation.spring.web.plugins.Docket;
 
 @SpringBootApplication
 public class VibezApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(VibezApplication.class, args);
+    }
 
-	public static void main(String[] args) {
-		SpringApplication.run(VibezApplication.class, args);
-	}
-
-	@Bean
-    public Docket api() { 
-        return new Docket(DocumentationType.SWAGGER_2)  
-          .apiInfo(SwaggerConfig.apiInfo())
-          .securityContexts(SwaggerConfig.securityContext())
-          .securitySchemes(SwaggerConfig.apiKey())
-          .select()                                  
-          .apis(RequestHandlerSelectors.any())              
-          .paths(PathSelectors.any())                          
-          .build();                                           
+    @Bean
+    public Docket api() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(SwaggerConfig.apiInfo())
+                .securityContexts(SwaggerConfig.securityContext())
+                .securitySchemes(SwaggerConfig.apiKey())
+                .select()
+                .apis(RequestHandlerSelectors.any())
+                .paths(PathSelectors.any())
+                .build();
     }
 }

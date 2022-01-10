@@ -33,7 +33,7 @@ public class UserService {
 	}
 
 	public List<User> getUserByUsername(String username) {
-		List<User> users = ud.findUserByUsername(username);
+		List<User> users = ud.findByUsername(username);
 		for(User u : users) u.setPassword(null);
 		return users;
 	}
@@ -47,8 +47,8 @@ public class UserService {
 	}
 
 	public void resetPassword(String username, String password) {
-		List<User> users = ud.findUserByUsername(username);	
-		System.out.println(users.toString());
+		List<User> users = ud.findByUsername(username);	
+		// System.out.println(users.toString());
 		User currentUser = users.get(0);
 		currentUser.setPassword(password);
 		ud.save(currentUser);
@@ -56,7 +56,7 @@ public class UserService {
 	}
 	
 	public User uploadProfileImage(String username, MultipartFile file) {
-		List<User> users = ud.findUserByUsername(username);	
+		List<User> users = ud.findByUsername(username);	
 		System.out.println(users.toString());
 		User user = users.get(0);
 		try {

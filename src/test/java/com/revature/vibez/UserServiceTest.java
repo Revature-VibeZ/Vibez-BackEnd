@@ -34,12 +34,43 @@ public class UserServiceTest {
 		u.setEmail("testmail@testing.com");
 		u.setPassword("joepass");
 		u.setUsername("joeusername");
-		ud.save(u);
+		us.createUser(u);
 		
-		List<User> user = ud.findUserByUsername(u.getUsername());
-		assertNotNull(user);
+		List<User> users = ud.findAll();
+		User user = users.get(13);
+		assertEquals(user.getFirstName(), "Joe");
+
 	}
 	
+	
+	@Test
+	public void findByUsername() {
+		List<User> users = ud.findAll();
+		User user = users.get(1);
+		us.getUserByUsername("username1");
+		assertEquals(us.getUserByUsername("username1"), user);
+
+	}
+	
+	@Test
+	public void findUserById() {
+		List<User> users = ud.findAll();
+		User user = users.get(0);
+		assertEquals(us.getUserById(1), user);
+	}
+	
+	@Test
+	public void retrieveAllUsers() {
+		List<User> users = us.getAllUsers();	
+		int size = users.size();
+		assertEquals(size, 13);	
+	}
+	
+//	@Test
+//	public void imageSaved() {
+//		
+//	
+//	}
 	
 
 }

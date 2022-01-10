@@ -5,13 +5,18 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import org.springframework.data.annotation.Transient;
 
@@ -30,21 +35,17 @@ public class Post {
 	private String title;
 	private String content;
 	private String uuid;
-	 @Column(name="timestamp", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-	// @Temporal(TemporalType.TIMESTAMP)
+	@Column(name="timestamp", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	private Date creationDate;
-	private String username;
-
 	
-	@Column(name="parent_id")
 	//parent id is null for top level posts, otherwise if parent id is not null it's a comment or nested comment
 	//using Integer instead of int because parentId is null at the top level. Java compiler will unbox/convert back down to a primitive if needed.
+	@Column(name="parent_id")
 	private Integer parentId;
 	
-	// @ManyToOne
-    // @JoinColumn(name = "author", referencedColumnName = "id")
-    // private User author;
-	//this represents who wrote the post, references user.id on users table
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="user_id")
+	private User author;
 	
 	@OneToMany
 	@JoinColumn(name="post_id")
@@ -53,12 +54,10 @@ public class Post {
 	@OneToMany
 	@JoinColumn(name="parent_id")
 	private List<Post> comments;
-
 	
 	@Transient
 	@Size(max=1000)
-	private String image;
-
+	private String image;	
 
 	// //should not be here, incomplete. shows logged in user's friendships, in this case user 1 just for examples' sake.
 	// @OneToMany
