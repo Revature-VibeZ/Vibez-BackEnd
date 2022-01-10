@@ -22,7 +22,7 @@ public class UserService {
 	public UserService(UserDao ud) {
 		this.ud = ud;
 	}
-
+	//Below fields allow us to manipulate User object on the Database.
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void createUser(User u) {
 		ud.save(u);

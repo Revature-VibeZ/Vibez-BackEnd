@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Length;
 
 import lombok.Data;
-
+//This model allows us to manipulate user objects.
 @Entity
 @Table(name="users")
 @Data
@@ -41,4 +41,4 @@ public class User {
 	private String profilePicture;
 }
 
-//comment as requested by kevin
+

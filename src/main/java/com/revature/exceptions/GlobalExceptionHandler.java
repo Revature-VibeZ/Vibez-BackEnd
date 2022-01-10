@@ -11,13 +11,13 @@ public class GlobalExceptionHandler {
 	@ResponseStatus(value=HttpStatus.NOT_FOUND, reason="No user of that id")
 	@ExceptionHandler(UserNotFoundException.class)
 	public void handleUserNotFoundException() {
-		// do something, ie: log
+		
 	}
 	
 	@ResponseStatus(value=HttpStatus.BAD_REQUEST, reason="Bad Request")
 	@ExceptionHandler(Exception.class)
 	public void handleException() {
-		// do something else
+		
 	}
 	
 }

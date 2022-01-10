@@ -31,7 +31,7 @@ public class Post {
 	private String image;
 	private String uuid;
 	 @Column(name="timestamp", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-	// @Temporal(TemporalType.TIMESTAMP)
+	
 	private Date creationDate;
 
 	//this represents who wrote the post, references user.id on users table

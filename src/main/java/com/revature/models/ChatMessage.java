@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
-
+//This model contains everything needed for the User Chat functionality.
 @Entity
 @Table(name="ChatMessage")
 @Data

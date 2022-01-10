@@ -9,6 +9,6 @@ import com.revature.models.Like;
 
 @Repository
 public interface LikeDao extends JpaRepository<Like, Integer> {
-    //save not needed it's already defined in crud repository
+    
     List<Like> findByPostId(int postId);
 }

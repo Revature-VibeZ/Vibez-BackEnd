@@ -10,8 +10,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.models.JwtRequest;
@@ -32,18 +30,17 @@ public class AuthController {
 	@Autowired
 	private AuthService as;
 	
-	
+	//This function begins the Authentication Token Creation process.
 	@PostMapping("/auth")
 	public ResponseEntity<JwtResponse> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 		
-		//Beginning Create Auth Token
+		 
 		
 		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 		
 		final UserDetails userDetails = as.loadUserByUsername(authenticationRequest.getUsername());
 		
-		System.out.println("Auth Controller - User Details Line:");
-		System.out.println(userDetails);
+		
 
 		final String token = jwtTokenUtil.generateToken(userDetails);
 System.out.println(jwtTokenUtil.generateToken(userDetails));
@@ -52,10 +49,10 @@ System.out.println(jwtTokenUtil.generateToken(userDetails));
 
 	private void authenticate(String username, String password) throws Exception {
 		try {
-			System.out.println("We have entered the try block of authenticate");
+			
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 		} catch (DisabledException e) {
-			System.out.println("We failed to authenticate - disabled");
+			
 			throw new Exception("USER_DISABLED", e);
 		} catch (BadCredentialsException e) {
 			throw new Exception("INVALID_CREDENTIALS", e);

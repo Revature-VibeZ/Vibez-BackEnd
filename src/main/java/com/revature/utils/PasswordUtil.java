@@ -1,7 +1,7 @@
 package com.revature.utils;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
-
+//Util provides logc for password hashing using BCrypt and checking incoming hashed passwords.
 public class PasswordUtil {
     public static String hashPassword(String input){
             return BCrypt.hashpw(input, BCrypt.gensalt(12));

@@ -12,12 +12,13 @@ import com.revature.models.User;
 import com.revature.DAOs.UserDao;
 import com.revature.services.AuthPrincipal;
 
+@SuppressWarnings("unused")
 @Service
 public class AuthService implements UserDetailsService {
 
 	@Autowired
     private UserDao userRepository;
-
+//This service loads in User information from Database and checks user information received from front end to see if information matches.
     @Override
     public UserDetails loadUserByUsername(String username) {
     	System.out.println("We have reached load User by Username");

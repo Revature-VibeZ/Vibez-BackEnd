@@ -14,7 +14,7 @@ import com.revature.models.ChatMessage;
 @RequestMapping("/chat")
 @CrossOrigin("*")
 public class ChatController {
-//	public static ArrayList<String> history = new ArrayList<String>();
+
 	private ChatMessageDao cd;
 	public ChatController(ChatMessageDao cd) {
 		this.cd = cd;

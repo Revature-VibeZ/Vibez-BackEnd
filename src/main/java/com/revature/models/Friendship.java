@@ -8,6 +8,7 @@ import javax.persistence.Table;
 
 import lombok.Data;
 
+//This model is used to perform functions on the Friends entity
 @Entity
 @Table(name="friendships")
 @Data
