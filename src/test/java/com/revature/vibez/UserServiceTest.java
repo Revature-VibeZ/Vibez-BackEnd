@@ -34,10 +34,12 @@ public class UserServiceTest {
 		u.setEmail("testmail@testing.com");
 		u.setPassword("joepass");
 		u.setUsername("joeusername");
-		ud.save(u);
+		us.createUser(u);
 		
-		List<User> user = ud.findUserByUsername(u.getUsername());
-		assertNotNull(user);
+		List<User> users = ud.findAll();
+		User user = users.get(13);
+		assertEquals(user.getFirstName(), "Joe");
+
 	}
 	
 	
