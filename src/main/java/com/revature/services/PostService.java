@@ -59,7 +59,7 @@ public class PostService {
 	}
 
 	public void saveAuthor(Post p, String username) {
-		List<User> users = ud.findUserByUsername(username);
+		List<User> users = ud.findByUsername(username);
 		User u = users.get(0);
 		p.setAuthor(u);
 	}
