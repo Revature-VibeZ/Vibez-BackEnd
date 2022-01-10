@@ -43,5 +43,28 @@ public class UserServiceTest {
 	}
 	
 	
+	
+//	@Test
+//	public void findByUsername() {
+//		List<User> users = ud.findAll();
+//		User user = users.get(0);
+//		us.getUserByUsername("User");
+//		assertEquals(us.getUserByUsername("User"), user);
+//
+//	}
+	
+//	@Test
+//	public void findCreatedUserById() {
+//		
+//	}
+	
+	@Test
+	public void retrieveAllUsers() {
+		List<User> users = us.getAllUsers();	
+		int size = users.size();
+		assertEquals(size, 13);	
+	}
+	
+	
 
 }
