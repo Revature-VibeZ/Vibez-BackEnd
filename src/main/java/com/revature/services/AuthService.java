@@ -18,11 +18,11 @@ public class AuthService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) {
-    	System.out.println("We have reached load User by Username");
+    	// System.out.println("We have reached load User by Username");
     	List<User> users = userRepository.findUserByUsername(username);
         User user = users.get(0);        
        
-        System.out.println("Found user by username: " + user);
+        // System.out.println("Found user by username: " + user);
         if (user == null) {
             throw new UsernameNotFoundException(username);
         }

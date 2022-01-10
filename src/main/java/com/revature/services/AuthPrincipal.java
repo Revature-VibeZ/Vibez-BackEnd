@@ -9,10 +9,6 @@ import com.revature.models.User;
 import com.revature.utils.PasswordUtil;
 
 public class AuthPrincipal implements UserDetails {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private User user;
