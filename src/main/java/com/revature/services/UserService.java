@@ -12,7 +12,6 @@ import com.revature.models.User;
 import com.revature.DAOs.UserDao;
 import com.revature.exceptions.UserNotFoundException;
 
-
 @Service
 public class UserService {
 
@@ -22,7 +21,8 @@ public class UserService {
 	public UserService(UserDao ud) {
 		this.ud = ud;
 	}
-	//Below fields allow us to manipulate User object on the Database.
+
+	// Below fields allow us to manipulate User object on the Database.
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void createUser(User u) {
 		ud.save(u);
@@ -34,7 +34,8 @@ public class UserService {
 
 	public List<User> getUserByUsername(String username) {
 		List<User> users = ud.findUserByUsername(username);
-		for(User u : users) u.setPassword(null);
+		for (User u : users)
+			u.setPassword(null);
 		return users;
 	}
 
@@ -46,17 +47,31 @@ public class UserService {
 		return null;
 	}
 
-	public void resetPassword(String username, String password) {
-		List<User> users = ud.findUserByUsername(username);	
+	public void updateUser(User u) {
+		List<User> users = ud.findUserByUsername(u.getUsername());
 		System.out.println(users.toString());
 		User currentUser = users.get(0);
-		currentUser.setPassword(password);
+		if(!u.getFirstName().isBlank()) {
+			currentUser.setFirstName(u.getFirstName());
+		}
+		if(!u.getLastName().isBlank()) {
+			currentUser.setLastName(u.getLastName());
+		}
+		if(!u.getEmail().isBlank()) {
+			currentUser.setEmail(u.getEmail());
+		}
+		if(!u.getPassword().isBlank()) {
+			currentUser.setPassword(u.getPassword());
+		}
+		if(!u.getBio().isBlank()) {
+			currentUser.setBio(u.getBio());
+		}
 		ud.save(currentUser);
 
 	}
-	
+
 	public User uploadProfileImage(String username, MultipartFile file) {
-		List<User> users = ud.findUserByUsername(username);	
+		List<User> users = ud.findUserByUsername(username);
 		System.out.println(users.toString());
 		User user = users.get(0);
 		try {
@@ -65,19 +80,19 @@ public class UserService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		ud.save(user);		
-		return user;		
+		ud.save(user);
+		return user;
 	}
-	
+
 	public User saveImage(User u, MultipartFile file) throws IOException {
 		S3Service s3 = new S3Service();
 		try {
-			u.setUuid(s3.upload(file));		
+			u.setUuid(s3.upload(file));
 			u.setProfilePicture(s3.getSignedUrl(u.getUuid()));
 			return u;
 			// String filename = (s3.upload(file));
 			// to get the actual link
-			//System.out.println(s3.getSignedUrl(filename));			
+			// System.out.println(s3.getSignedUrl(filename));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
