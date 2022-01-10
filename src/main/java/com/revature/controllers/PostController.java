@@ -31,12 +31,12 @@ public class PostController {
 	@Autowired public PostController(PostService ps) { 
 		this.ps = ps; 
 	} 
-
+	//Allows for creation of a Reply
 	@PostMapping
 	public ResponseEntity<Post> create(@Valid @RequestBody Post p, @RequestParam(name = "username") String username){
 		return new ResponseEntity<>(ps.createPost(p, username), HttpStatus.CREATED);
 	}
-	
+	//Allows for creation of a Post
 	@PostMapping("/new")
 	public ResponseEntity<String> post( @RequestPart(value = "file", required = false) MultipartFile file,
 			@RequestParam(name="content") String post,

@@ -29,7 +29,7 @@ public class S3Service implements S3Dao {
 		this.s3 = new AmazonConfiguration().s3();
 		this.fs = new FileService();
 	}
-    
+    //Logic for Amazon S3 implementation
     @Override
     public String upload(MultipartFile file) throws IOException {
         
@@ -41,11 +41,11 @@ public class S3Service implements S3Dao {
 
         s3.putObject("revature-vibez", uuid, inputStream, objectMetadata);
         
-//        URL imageUrl = s3.getUrl("revature-vibez", uuid);        
+  
        
 
         return uuid;
-//        return imageUrl.toString();
+
     }
     
     public String getSignedUrl(String uuid) {

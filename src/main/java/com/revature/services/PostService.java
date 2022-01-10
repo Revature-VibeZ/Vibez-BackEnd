@@ -21,7 +21,7 @@ public class PostService {
 		this.pd = pd;
 		this.ud = ud;		
 	}	
-	
+	//Creates a Post
 	public Post createPost(Post p, String username) {
 		List<User> users = ud.findUserByUsername(username);
 		User user = users.get(0);
@@ -30,7 +30,7 @@ public class PostService {
 		p.setCreationDate(new Date());		
 		return pd.save(p);
 	}
-	
+	//Creates a Post that has a picture attached
 	public Post createPostWithFile(Post p, String username, MultipartFile file) throws IOException {
 		List<User> users = ud.findUserByUsername(username);	
 		System.out.println(users.toString());
@@ -43,7 +43,7 @@ public class PostService {
 		return pd.save(p);
 	
 	}
-
+//Gets a post that is not a comment.
 	public List<Post> getTopLevelPosts() throws IOException {		
 		S3Service s3 = new S3Service();
 		for (Post post : pd.findByParentIdIsNull()) {
@@ -55,14 +55,12 @@ public class PostService {
 		}
 		return pd.findByParentIdIsNull();
 	}
-	
+	//Saves the image for a Post.
 	public void saveImage(Post p, MultipartFile file) throws IOException {
 		S3Service s3 = new S3Service();
 		try {
 			p.setUuid(s3.upload(file));
-			// String filename = (s3.upload(file));
-			// to get the actual link
-			//System.out.println(s3.getSignedUrl(filename));			
+				
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
-
+//This model allows us to construct Like entities for manipulation
 @Entity
 @Table(name="likes")
 @Data
