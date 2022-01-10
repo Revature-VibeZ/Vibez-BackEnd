@@ -42,6 +42,7 @@ public class UserControllerTests {
 		assertEquals(size, 14);	
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Test
 	public void creates_user_if_user_given() {
 		User u = new User();
@@ -52,7 +53,12 @@ public class UserControllerTests {
 		u.setPassword("joepass");
 		u.setUsername("joeusername");
 		
-		ResponseEntity<String> response = uc.createUser(u);
-		assertEquals(response, "<201 CREATED Created,[]>");
+		uc.createUser(u);
+		
+		String email = null;
+		String username = null;
+		List<User> users = us.getAllUsers();
+		int size = users.size();
+		assertEquals(size, 14);	
 	}
 }
