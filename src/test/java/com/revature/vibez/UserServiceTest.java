@@ -43,20 +43,21 @@ public class UserServiceTest {
 	}
 	
 	
+	@Test
+	public void findByUsername() {
+		List<User> users = ud.findAll();
+		User user = users.get(1);
+		us.getUserByUsername("username1");
+		assertEquals(us.getUserByUsername("username1"), user);
+
+	}
 	
-//	@Test
-//	public void findByUsername() {
-//		List<User> users = ud.findAll();
-//		User user = users.get(0);
-//		us.getUserByUsername("User");
-//		assertEquals(us.getUserByUsername("User"), user);
-//
-//	}
-	
-//	@Test
-//	public void findCreatedUserById() {
-//		
-//	}
+	@Test
+	public void findUserById() {
+		List<User> users = ud.findAll();
+		User user = users.get(0);
+		assertEquals(us.getUserById(1), user);
+	}
 	
 	@Test
 	public void retrieveAllUsers() {
@@ -65,6 +66,11 @@ public class UserServiceTest {
 		assertEquals(size, 13);	
 	}
 	
+//	@Test
+//	public void imageSaved() {
+//		
+//	
+//	}
 	
 
 }
