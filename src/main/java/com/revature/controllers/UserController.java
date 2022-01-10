@@ -45,9 +45,9 @@ public class UserController {
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	//Allows for the password to be reset.
-	@PutMapping("/reset")
-	public ResponseEntity<String> resetPassword(@RequestParam String username, @RequestParam String password) {
-		us.resetPassword(username, password);
+	@PutMapping("/update")
+	public ResponseEntity<String> updateUserInfo(@RequestBody User user) {
+		us.updateUser(user);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	//Changing User's profile image
