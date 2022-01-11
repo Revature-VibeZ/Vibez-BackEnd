@@ -39,7 +39,7 @@ public class UserControllerTests {
 		String email = null;
 		List<User> users = uc.getAllUsers(username, email);	
 		int size = users.size();
-		assertEquals(size, 14);	
+		assertEquals(size, 13);	
 	}
 	
 	// @SuppressWarnings("unchecked")
