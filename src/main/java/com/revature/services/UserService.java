@@ -51,19 +51,19 @@ public class UserService {
 		List<User> users = ud.findByUsername(u.getUsername());
 		System.out.println(users.toString());
 		User currentUser = users.get(0);
-		if(!u.getFirstName().isBlank()) {
+		if(!u.getFirstName().isEmpty()) {
 			currentUser.setFirstName(u.getFirstName());
 		}
-		if(!u.getLastName().isBlank()) {
+		if(!u.getLastName().isEmpty()) {
 			currentUser.setLastName(u.getLastName());
 		}
-		if(!u.getEmail().isBlank()) {
+		if(!u.getEmail().isEmpty()) {
 			currentUser.setEmail(u.getEmail());
 		}
-		if(!u.getPassword().isBlank()) {
+		if(!u.getPassword().isEmpty()) {
 			currentUser.setPassword(u.getPassword());
 		}
-		if(!u.getBio().isBlank()) {
+		if(!u.getBio().isEmpty()) {
 			currentUser.setBio(u.getBio());
 		}
 		ud.save(currentUser);
