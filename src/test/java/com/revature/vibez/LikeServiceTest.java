@@ -27,21 +27,21 @@ public class LikeServiceTest {
 		assertNotNull(like);
 	}
 	
-	// @Test
-	// public void can_get_all_likes() {
+	@Test
+	public void can_get_all_likes() {
 		
-	// 	List<Like> likes = ls.getAllLikes();
+	List<Like> likes = ls.getAllLikes();
 		
-	// 	assertEquals(likes.size(), 3);
-	// }
+	assertEquals(likes.size(), 2);
+	}
 	
-	// @Test
-	// public void gets_all_likes_by_postId() {
+	@Test
+	public void gets_all_likes_by_postId() {
 		
-	// 	List<Like> likes1 = ls.getLikesByPostId(1);
+	List<Like> likes1 = ls.getLikesByPostId(1);
 		
-	// 	assertEquals(likes1.size(), 3);
-	// }
+	assertEquals(likes1.size(), 2);
+	}
 	
 	@Test 
 	public void can_delete_by_post_id() {
@@ -55,5 +55,12 @@ public class LikeServiceTest {
 		assertEquals(likes1.size(), 2);
 	}
 	
+	@Test 
+	public void gets_all_likes() {
+		
+		List<Like> likes = ls.getAllLikes();
+		
+		assertNotNull(likes);
+	}
 
 }

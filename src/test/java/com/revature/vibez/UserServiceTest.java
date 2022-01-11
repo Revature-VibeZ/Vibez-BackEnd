@@ -21,56 +21,12 @@ import com.revature.services.UserService;
 public class UserServiceTest {
 	
 	@Autowired
-	private UserDao ud;
-	
-	@Autowired
 	private UserService us;
-	
-	@Test
-	public void createUserWithParams() {
-		User u = new User();
-		u.setFirstName("Joe");
-		u.setLastName("Yooser");
-		u.setEmail("testmail@testing.com");
-		u.setPassword("joepass");
-		u.setUsername("joeusername");
-		us.createUser(u);
-		
-		List<User> users = ud.findAll();
-		User user = users.get(13);
-		assertEquals(user.getFirstName(), "Joe");
-
-	}
-	
-	
-	// @Test
-	// public void findByUsername() {
-	// 	List<User> users = ud.findAll();
-	// 	User user = users.get(1);
-	// 	us.getUserByUsername("username1");
-	// 	assertEquals(us.getUserByUsername("username1"), user);
-
-	// }
-	
-	// @Test
-	// public void findUserById() {
-	// 	List<User> users = ud.findAll();
-	// 	User user = users.get(0);
-	// 	assertEquals(us.getUserById(1), user);
-	// }
 	
 	@Test
 	public void retrieveAllUsers() {
 		List<User> users = us.getAllUsers();	
 		int size = users.size();
-		assertEquals(size, 13);	
+		assertEquals(size, 14);	
 	}
-	
-//	@Test
-//	public void imageSaved() {
-//		
-//	
-//	}
-	
-
 }
