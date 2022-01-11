@@ -1,6 +1,5 @@
 package com.revature.vibez;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -11,10 +10,7 @@ import com.revature.models.User;
 
 @SpringBootTest
 public class UserTests {
-	
-//	@Autowired
-//	public User u;
-	
+
 	@Test
 	public void test_setters_and_getters_id() {
 		User u = new User();
