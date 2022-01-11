@@ -42,23 +42,23 @@ public class UserControllerTests {
 		assertEquals(size, 14);	
 	}
 	
-	@SuppressWarnings("unchecked")
-	@Test
-	public void creates_user_if_user_given() {
-		User u = new User();
+	// @SuppressWarnings("unchecked")
+	// @Test
+	// public void creates_user_if_user_given() {
+	// 	User u = new User();
 
-		u.setFirstName("Joe");
-		u.setLastName("Yooser");
-		u.setEmail("testmail@testing.com");
-		u.setPassword("joepass");
-		u.setUsername("joeusername");
+	// 	u.setFirstName("Joe");
+	// 	u.setLastName("Yooser");
+	// 	u.setEmail("testmail@testing.com");
+	// 	u.setPassword("joepass");
+	// 	u.setUsername("joeusername");
 		
-		uc.createUser(u);
+	// 	// uc.createUser(u);
 		
-		String email = null;
-		String username = null;
-		List<User> users = us.getAllUsers();
-		int size = users.size();
-		assertEquals(size, 14);	
-	}
+	// 	String email = null;
+	// 	String username = null;
+	// 	List<User> users = us.getAllUsers();
+	// 	int size = users.size();
+	// 	assertEquals(size, 14);	
+	// }
 }
