@@ -13,14 +13,17 @@ public class AuthPrincipal implements UserDetails {
 
 	private User user;
 	
+	@SuppressWarnings("unused")
 	private String username;
 	
+	@SuppressWarnings("unused")
 	private String password;
 	
 	public AuthPrincipal(User user) {
 		this.user = user;
 	}
-
+	
+	//The below functions allow for logic to be inserted that can modify or lock accounts. As of this stage of the project and with no Admin role, by default this will allow all registered users to clear the authorization process provided they have correct credentials.
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return null;
@@ -55,5 +58,4 @@ public class AuthPrincipal implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
-
 }

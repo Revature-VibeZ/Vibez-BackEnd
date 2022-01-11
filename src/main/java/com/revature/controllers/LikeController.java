@@ -26,7 +26,7 @@ public class LikeController {
 	@Autowired public LikeController(LikeService ls) { 
 	this.ls = ls; 
 	} 
-		
+		//creation of a Like
 	@PostMapping
 	public ResponseEntity<Like> create(@RequestParam(name="postId") int postId, @RequestParam(name="username") String username){
 		Like res = ls.createLike(username, postId);
@@ -37,11 +37,11 @@ public class LikeController {
 	}
 	 
 	@GetMapping
-    // req params: filter by post id, right now returns all likes
+    // req params: filter by post id, otherwise it returns all likes
 	public List<Like> getByPostId(@RequestParam(name="postId") int postId) {
 		return ls.getLikesByPostId(postId);
 	}
-
+	//allows for removal of a Like
 	@DeleteMapping
 	public ResponseEntity<Integer> delete(@RequestParam(name="postId") int postId, @RequestParam(name="username") String username){
 		int id = 0;

@@ -23,12 +23,12 @@ public class S3Service implements S3Dao {
     private FileService fs;
 
     @Autowired
-    public S3Service() throws IOException {
-        super();
-        this.s3 = new AmazonConfiguration().s3();
-        this.fs = new FileService();
-    }
-
+	public S3Service() throws IOException {
+		super();
+		this.s3 = new AmazonConfiguration().s3();
+		this.fs = new FileService();
+	}
+    //Logic for Amazon S3 implementation
     @Override
     public String upload(MultipartFile file) throws IOException {
         InputStream inputStream = fs.getInputStream(file);

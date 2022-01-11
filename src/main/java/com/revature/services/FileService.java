@@ -18,7 +18,7 @@ public class FileService {
 	public FileService() {
 		super();
 	}
-    
+    //This service contains the business logic to allow use of images for profiles and posts.
 	public String generateUUID() {
 		return UUID.randomUUID().toString() + ".png";
     }

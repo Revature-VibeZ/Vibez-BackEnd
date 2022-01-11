@@ -35,7 +35,7 @@ public class Post {
 	private String title;
 	private String content;
 	private String uuid;
-	@Column(name="timestamp", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+	@Column(name="timestamp", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")	
 	private Date creationDate;
 	
 	//parent id is null for top level posts, otherwise if parent id is not null it's a comment or nested comment
@@ -57,10 +57,5 @@ public class Post {
 	
 	@Transient
 	@Size(max=1000)
-	private String image;	
-
-	// //should not be here, incomplete. shows logged in user's friendships, in this case user 1 just for examples' sake.
-	// @OneToMany
-	// @JoinColumn(name="first_user_id")
-	// private List<Friendship> friends;
+	private String image;
 }

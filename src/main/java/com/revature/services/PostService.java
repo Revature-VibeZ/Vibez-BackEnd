@@ -22,13 +22,13 @@ public class PostService {
 		this.ud = ud;
 		this.s3 = s3;
 	}	
-	
+	//Creates a Post
 	public Post createPost(Post p, String username) {
 		saveAuthor(p, username);
 		p.setCreationDate(new Date());		
 		return pd.save(p);
 	}
-	
+	//Creates a Post that has a picture attached
 	public Post createPostWithFile(Post p, String username, MultipartFile file) throws IOException {
 		saveAuthor(p, username);
 		p.setCreationDate(new Date());
@@ -38,7 +38,7 @@ public class PostService {
 		}
 		return pd.save(p);
 	}
-
+//Gets a post that is not a comment.
 	public List<Post> getTopLevelPosts() throws IOException {		
 		for (Post post : pd.findByParentIdIsNull()) {
 			System.out.println(post.getAuthor().getUsername());
@@ -50,10 +50,10 @@ public class PostService {
 		}
 		return pd.findByParentIdIsNull();
 	}
-	
+	//Saves the image for a Post.
 	public void saveImage(Post p, MultipartFile file) throws IOException {
 		try {
-			p.setUuid(s3.upload(file));	
+			p.setUuid(s3.upload(file));		
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

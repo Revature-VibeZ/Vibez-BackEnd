@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class AmazonConfiguration {
-	
+	//Configuration for Amazon S3
     @Bean
     public AmazonS3 s3() throws IOException {
         String access = System.getenv("VIBEZ_ACCESS_KEY");
