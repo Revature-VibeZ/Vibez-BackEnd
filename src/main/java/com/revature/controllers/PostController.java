@@ -25,7 +25,7 @@ import com.revature.services.PostService;
 @RequestMapping("/posts")
 @CrossOrigin("*")
 public class PostController {
-	
+
 	private PostService ps;
 	 
 	@Autowired public PostController(PostService ps) { 
@@ -33,21 +33,23 @@ public class PostController {
 	} 
 	//Allows for creation of a Reply
 	@PostMapping
-	public ResponseEntity<Post> create(@Valid @RequestBody Post p, @RequestParam(name = "username") String username){
+	public ResponseEntity<Post> create(@Valid @RequestBody Post p, @RequestParam(name = "username") String username) {
 		return new ResponseEntity<>(ps.createPost(p, username), HttpStatus.CREATED);
 	}
+
 	//Allows for creation of a Post
 	@PostMapping("/new")
-	public ResponseEntity<String> post( @RequestPart(value = "file", required = false) MultipartFile file,
-			@RequestParam(name="content") String post,
-			@RequestParam(name="username") String username
-			) throws IOException{
+	public ResponseEntity<Post> post(
+			@RequestPart(value = "file", required = false) MultipartFile file,
+			@RequestPart(value = "username", required = true) String username,
+			@RequestPart(value = "title", required = true) String title,
+			@RequestPart(value = "content", required = true) String content) throws IOException {
 		Post p = new Post();
-		p.setContent(post);
-		ps.createPostWithFile(p, username, file);
-		return new ResponseEntity<>(HttpStatus.CREATED);
+		p.setTitle(title);
+		p.setContent(content);
+		return new ResponseEntity<>(ps.createPostWithFile(p, username, file), HttpStatus.CREATED);
 	}
-	
+
 	@GetMapping
 	public List<Post> get() throws IOException {
 		return ps.getTopLevelPosts();
