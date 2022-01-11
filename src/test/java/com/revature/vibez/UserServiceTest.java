@@ -48,6 +48,7 @@ public class UserServiceTest {
 		List<User> users = ud.findAll();
 		User user = users.get(1);
 		us.getUserByUsername("username1");
+		System.out.println(us.getUserByUsername("username1"));
 		assertEquals(us.getUserByUsername("username1"), user);
 
 	}
