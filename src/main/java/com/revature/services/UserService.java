@@ -47,10 +47,9 @@ public class UserService {
 		return null;
 	}
 
-	public void updateUser(User u) {
-		List<User> users = ud.findByUsername(u.getUsername());
-		System.out.println(users.toString());
-		User currentUser = users.get(0);
+	public void updateUser(User u) {		
+		List<User> users = ud.findByUsername(u.getUsername());		
+		User currentUser = users.get(0);		
 		if(!u.getFirstName().isEmpty()) {
 			currentUser.setFirstName(u.getFirstName());
 		}
