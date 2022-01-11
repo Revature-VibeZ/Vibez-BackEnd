@@ -17,6 +17,10 @@ public class ChatMessage {
 	private int id;
 	private String username;
 	private String message;
+	
+	public ChatMessage() {
+		
+	}
 
 	public ChatMessage(String username, String message) {
 		super();

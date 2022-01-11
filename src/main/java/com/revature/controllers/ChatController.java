@@ -1,5 +1,7 @@
 package com.revature.controllers;
 import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -30,10 +32,10 @@ public class ChatController {
 	}
 	
 	@GetMapping
-	public ArrayList<String> getTop() {		
-		ArrayList<String> history = new ArrayList<String>();
-		
+	public ArrayList<String> getTop() {			
+		ArrayList<String> history = new ArrayList<String>();		
 		for(ChatMessage m : cd.findAll()) {
+			System.out.println("loop");
 		    history.add(m.getUsername()+" : "+ m.getMessage());
 		}
 		return history;

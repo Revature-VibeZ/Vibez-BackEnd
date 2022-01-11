@@ -39,26 +39,40 @@ public class UserControllerTests {
 		String email = null;
 		List<User> users = uc.getAllUsers(username, email);	
 		int size = users.size();
-		assertEquals(size, 13);	
+		assertEquals(size, 14);	
 	}
 	
-	// @SuppressWarnings("unchecked")
-	// @Test
-	// public void creates_user_if_user_given() {
-	// 	User u = new User();
+	@SuppressWarnings("unchecked")
+	@Test
+	public void creates_user_if_user_given() {
+	User u = new User();
 
-	// 	u.setFirstName("Joe");
-	// 	u.setLastName("Yooser");
-	// 	u.setEmail("testmail@testing.com");
-	// 	u.setPassword("joepass");
-	// 	u.setUsername("joeusername");
+	u.setFirstName("Joe");
+	u.setLastName("Yooser");
+	u.setEmail("testmail@testing.com");
+	u.setPassword("joepass");
+	u.setUsername("joeusername");
 		
-	// 	// uc.createUser(u);
-		
-	// 	String email = null;
-	// 	String username = null;
-	// 	List<User> users = us.getAllUsers();
-	// 	int size = users.size();
-	// 	assertEquals(size, 14);	
-	// }
+	ResponseEntity<String> r = uc.createUser(u);
+	assertEquals(201, r.getStatusCodeValue());
+	}
+	
+//	@Test
+//	public void update_user_returns_correct_status() {
+//		
+//		User u = new User();
+//		
+//		u.setFirstName("Joe");
+//		u.setLastName("Yooser");
+//		//u.setEmail("testmail@testing.com");
+//		u.setPassword("joepass");
+//		u.setUsername("joeusername");
+//		
+//		uc.createUser(u);
+//		
+//		u.setFirstName("Joseph");
+//		
+//		ResponseEntity<String> r = uc.updateUserInfo(u);
+//		assertEquals(200, r.getStatusCodeValue());
+//	}
 }
