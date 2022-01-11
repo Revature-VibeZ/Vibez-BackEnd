@@ -38,11 +38,11 @@ public class PostServiceTest {
 		p.setTitle("Joe");
 		p.setContent("Yooser");
 		p.setUuid("testmail@testing.com");
-		p.setUsername("username1");
-		ps.createPost(p, "username1");
-		
+//		p.setUsername("username1");		
+		ps.createPost(p, "username1");		
 		List<User> users = us.getAllUsers();
 		User user = users.get(0);
+		p.setAuthor(user);
 		assertEquals(user.getUsername(), "username1");
 
 	}

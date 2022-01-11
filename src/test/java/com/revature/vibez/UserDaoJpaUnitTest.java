@@ -140,7 +140,7 @@ public class UserDaoJpaUnitTest {
 		u3.setUsername("joeusername3");
         userDao.save(u3);
 
-        User foundUser = userDao.findUserByUsername(u2.getUsername()).get(0);
+        User foundUser = userDao.findByUsername(u2.getUsername()).get(0);
 
         assertThat(foundUser).isEqualTo(u2);
     }

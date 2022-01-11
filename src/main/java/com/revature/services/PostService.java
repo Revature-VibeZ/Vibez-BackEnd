@@ -41,6 +41,7 @@ public class PostService {
 
 	public List<Post> getTopLevelPosts() throws IOException {		
 		for (Post post : pd.findByParentIdIsNull()) {
+			System.out.println(post.getAuthor().getUsername());
 			//uuid is a unique identifier for the file
 			if (post.getUuid()!= null) {
 				post.setImage(s3.getSignedUrl(post.getUuid()));

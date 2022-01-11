@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.revature.models.Post;
+import com.revature.models.User;
 
 //private int id;
 //private String title;
@@ -43,7 +44,7 @@ public class PostTest {
 		Post p = new Post();
 		p.setContent("test content");
 		
-		assertTrue(p.getContent() == "test content");
+		assertTrue(p.getContent().equals("test content"));
 	}
 	
 	@Test
@@ -57,9 +58,10 @@ public class PostTest {
 	@Test
 	public void test_getters_setters_username() {
 		Post p = new Post();
-		p.setUsername("joeusername");
-		
-		assertTrue(p.getUsername() == "joeusername");
+		User u = new User();
+		u.setUsername("joeusername");
+		p.setAuthor(u);		
+		assertTrue(p.getAuthor().getUsername().equals("joeusername"));
 	}
 	
 	@Test
