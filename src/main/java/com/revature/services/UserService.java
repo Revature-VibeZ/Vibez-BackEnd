@@ -14,12 +14,13 @@ import com.revature.exceptions.UserNotFoundException;
 
 @Service
 public class UserService {
-
+	private S3Service s3;
 	private UserDao ud;
 
 	@Autowired
-	public UserService(UserDao ud) {
+	public UserService(UserDao ud, S3Service s3) {
 		this.ud = ud;
+		this.s3 = s3;
 	}
 
 	// Below fields allow us to manipulate User object on the Database.
@@ -34,8 +35,12 @@ public class UserService {
 
 	public List<User> getUserByUsername(String username) {
 		List<User> users = ud.findByUsername(username);
-		for (User u : users)
-			u.setPassword(null);
+		for (User u : users) {			
+			if (u.getUuid() != null) {				
+				u.setProfilePicture(s3.getSignedUrl(u.getUuid()));
+			}			
+			u.setPassword(null);			
+		}
 		return users;
 	}
 
