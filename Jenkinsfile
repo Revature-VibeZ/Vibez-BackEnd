@@ -2,8 +2,8 @@ pipeline {
    agent any
    
     environment {
-        PORT_HOST="8081"
-        PORT_CONT="8080"
+        PORT_HOST="443"
+        PORT_CONT="443"
         IMAGE_TAG="vibez"
         CONTAINER_NAME="vibez"
         DB_URL=credentials('DB_URL')
