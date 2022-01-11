@@ -30,7 +30,7 @@ public class UserController {
 	public UserController(UserService us) {
 		this.us = us;
 	}
-
+	//Gets all Users
 	@GetMapping
 	public List<User> getAllUsers(@RequestParam(name = "username", required = false) String username,
 			@RequestParam(name = "email", required = false) String email) {
@@ -38,19 +38,19 @@ public class UserController {
 		if (email != null) return us.getUserByEmail(email);
 		return us.getAllUsers();
 	}
-
+	//Allows for creation of a new user
 	@PostMapping
 	public ResponseEntity<String> createUser(@RequestBody User user) {
 		us.createUser(user);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
-
-	@PutMapping("/reset")
-	public ResponseEntity<String> resetPassword(@RequestParam String username, @RequestParam String password) {
-		us.resetPassword(username, password);
+	//Allows for the password to be reset.
+	@PutMapping("/update")
+	public ResponseEntity<String> updateUserInfo(@RequestBody User user) {
+		us.updateUser(user);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
-
+	//Changing User's profile image
 	@PutMapping
 	public ResponseEntity<User> post(@RequestPart(value = "file", required = false) MultipartFile file,
 			@RequestPart(value = "username", required = true) String username) throws IOException {
@@ -61,7 +61,7 @@ public class UserController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
-
+	//Gets a user by their User ID
 	@GetMapping("/{id}")
 	public User getUserById(@PathVariable(name = "id") int id) {
 		return us.getUserById(id);

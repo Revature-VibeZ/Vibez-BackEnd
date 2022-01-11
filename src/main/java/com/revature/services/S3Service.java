@@ -18,39 +18,28 @@ import com.revature.utils.AmazonConfiguration;
 
 @Service
 public class S3Service implements S3Dao {
-	
-	private AmazonS3 s3;
-    
+
+    private AmazonS3 s3;
     private FileService fs;
-    
+
     @Autowired
 	public S3Service() throws IOException {
 		super();
 		this.s3 = new AmazonConfiguration().s3();
 		this.fs = new FileService();
 	}
-    
+    //Logic for Amazon S3 implementation
     @Override
     public String upload(MultipartFile file) throws IOException {
-        
         InputStream inputStream = fs.getInputStream(file);
-
         ObjectMetadata objectMetadata = fs.getObjectMetadata();
-
         String uuid = fs.generateUUID();
-
         s3.putObject("revature-vibez", uuid, inputStream, objectMetadata);
-        
-//        URL imageUrl = s3.getUrl("revature-vibez", uuid);        
-       
-
         return uuid;
-//        return imageUrl.toString();
     }
-    
+
     public String getSignedUrl(String uuid) {
-    	
-    	  // Set the presigned URL to expire after one hour.
+        // Set the presigned URL to expire after one hour.
         java.util.Date expiration = new java.util.Date();
         long expTimeMillis = Instant.now().toEpochMilli();
         expTimeMillis += 1000 * 60 * 60;
@@ -58,15 +47,12 @@ public class S3Service implements S3Dao {
 
         // Generate the presigned URL.
         System.out.println("Generating pre-signed URL.");
-        GeneratePresignedUrlRequest generatePresignedUrlRequest =
-                new GeneratePresignedUrlRequest("revature-vibez", uuid)
+        GeneratePresignedUrlRequest generatePresignedUrlRequest = new GeneratePresignedUrlRequest("revature-vibez",
+                uuid)
                         .withMethod(HttpMethod.GET)
                         .withExpiration(expiration);
         URL url = s3.generatePresignedUrl(generatePresignedUrlRequest);
-
         System.out.println("Pre-Signed URL: " + url.toString());
-    	
-    	return url.toString();
+        return url.toString();
     }
-
 }
