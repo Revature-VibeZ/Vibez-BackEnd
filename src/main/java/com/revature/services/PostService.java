@@ -39,21 +39,19 @@ public class PostService {
 		return pd.save(p);
 	}
 //Gets a post that is not a comment.
-	public List<Post> getTopLevelPosts() throws IOException {		
-		for (Post post : pd.findByParentIdIsNull()) {
-			
+	public List<Post> getTopLevelPosts() throws IOException {	
+		List<Post> listPosts = pd.findByParentIdIsNull();
+		for (Post post : listPosts) {			
 			if (post.getAuthor().getUuid() != null) {
 				post.getAuthor().setProfilePicture(s3.getSignedUrl(post.getAuthor().getUuid()));
-				pd.save(post);				
 			}
 			//uuid is a unique identifier for the file
 			if (post.getUuid()!= null) {
 				post.setImage(s3.getSignedUrl(post.getUuid()));
-				pd.save(post);
 			}
 		}
 		
-		return pd.findByParentIdIsNull();
+		return listPosts;
 	}
 	//Saves the image for a Post.
 	public void saveImage(Post p, MultipartFile file) throws IOException {
