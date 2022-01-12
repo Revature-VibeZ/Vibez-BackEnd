@@ -1,7 +1,10 @@
 package com.revature.services;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -49,8 +52,8 @@ public class PostService {
 			if (post.getUuid()!= null) {
 				post.setImage(s3.getSignedUrl(post.getUuid()));
 			}
-		}
-		
+		}		
+		listPosts.sort(Comparator.comparing(Post::getId));		
 		return listPosts;
 	}
 	//Saves the image for a Post.
