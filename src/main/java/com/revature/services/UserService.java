@@ -70,6 +70,14 @@ public class UserService {
 		if(!u.getBio().isEmpty()) {
 			currentUser.setBio(u.getBio());
 		}
+		try {
+			S3Service s3 = new S3Service();
+			currentUser.setProfilePicture(s3.getSignedUrl(currentUser.getUuid()));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		ud.save(currentUser);
 		return users;
 
