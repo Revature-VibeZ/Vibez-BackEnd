@@ -52,7 +52,7 @@ public class UserService {
 		return null;
 	}
 
-	public void updateUser(User u) {		
+	public List<User> updateUser(User u) {		
 		List<User> users = ud.findByUsername(u.getUsername());		
 		User currentUser = users.get(0);		
 		if(!u.getFirstName().isEmpty()) {
@@ -71,6 +71,7 @@ public class UserService {
 			currentUser.setBio(u.getBio());
 		}
 		ud.save(currentUser);
+		return users;
 
 	}
 
