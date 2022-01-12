@@ -46,9 +46,9 @@ public class UserController {
 	}
 	//Allows for the password to be reset.
 	@PutMapping("/update")
-	public ResponseEntity<String> updateUserInfo(@RequestBody User user) {
-		us.updateUser(user);
-		return new ResponseEntity<>(HttpStatus.OK);
+	public List<User> updateUserInfo(@RequestBody User user) {
+		List<User> users = us.updateUser(user);
+		return users;
 	}
 	//Changing User's profile image
 	@PutMapping
