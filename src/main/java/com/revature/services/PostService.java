@@ -28,7 +28,10 @@ public class PostService {
 	//Creates a Post
 	public Post createPost(Post p, String username) {
 		saveAuthor(p, username);
-		p.setCreationDate(new Date());		
+		p.setCreationDate(new Date());			
+		if (p.getAuthor().getUuid() != null) {
+			p.getAuthor().setProfilePicture(s3.getSignedUrl(p.getAuthor().getUuid()));
+		}
 		return pd.save(p);
 	}
 	//Creates a Post that has a picture attached
@@ -38,6 +41,9 @@ public class PostService {
 		if (file != null) saveImage(p, file);
 		if (p.getUuid()!= null) {
 			p.setImage(s3.getSignedUrl(p.getUuid()));
+		}
+		if (p.getAuthor().getUuid() != null) {
+			p.getAuthor().setProfilePicture(s3.getSignedUrl(p.getAuthor().getUuid()));
 		}
 		return pd.save(p);
 	}
